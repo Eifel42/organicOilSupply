@@ -12,6 +12,9 @@ The DApp User Interface when running should look like...
 
 ![truffle test](images/ftc_transaction_history.png)
 
+## Concept
+
+![Concept](https://github.com/Eifel42/organicOil)
 
 ## Getting Started
 
@@ -103,7 +106,7 @@ to make the web faster, safer, and more open.
 See also the list of [contributors](https://github.com/your/project/contributors.md) who participated in this project.
 
 ## Acknowledgments
-
+* Udacity
 * Solidity
 * Ganache-cli
 * Truffle

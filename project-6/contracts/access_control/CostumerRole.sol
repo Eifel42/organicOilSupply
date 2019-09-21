@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.8;
 
 // Import the library 'Roles'
 import "./Roles.sol";
@@ -23,7 +23,7 @@ contract CostumerRole {
     }
 
     function isCostumer(address account) public view returns (bool) {
-      return Costumers.has(account);
+      return costumers.has(account);
     }
 
     function addCostumer(address account) public onlyCostumer {
@@ -35,12 +35,12 @@ contract CostumerRole {
     }
 
     function _addCostumer(address account) internal {
-      Costumers.add(account);
+      costumers.add(account);
       emit CostumerAdded(account);
     }
 
     function _removeCostumer(address account) internal {
-      Costumers.remove(account);
+      costumers.remove(account);
       emit CostumerRemoved(account);
     }
 }

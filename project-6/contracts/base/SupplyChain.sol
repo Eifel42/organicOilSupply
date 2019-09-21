@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.8;
 // Define a contract 'Supplychain'
 import '../access_control/CostumerRole.sol';
 import '../access_control/FarmerRole.sol';
@@ -6,10 +6,10 @@ import '../access_control/ShopRole.sol';
 import '../access_control/MillRole.sol';
 import '../core/Ownable.sol';
 
-contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
+contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
 
   // Define 'owner'
-  address owner;
+  address contractOwner;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -19,9 +19,11 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
 
   // Oil Production Sequence
   uint oilProductionID;
+  // Fields for production
+  uint fieldIDs;
 
   // Define a public mapping 'items' that maps the UPC to an Item.
-  mapping(uint => Bootle) bottles;
+  mapping(uint => Bottle) bottles;
   //
   mapping(uint => OilProduction) oilProductions;
 
@@ -32,7 +34,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       Harvested // 1
   }
 
-  State constant defaultFieldState = Harvest;
+  uint constant factorProductID = 1000;
 
   // Define enum 'State' with the following values:
   enum State
@@ -46,7 +48,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
   }
 
   struct Field {
-      uint fieldId;          // Field ID
+      uint fieldID;          // Field ID
       string fieldName;      // Field Name
 
       FieldState fieldState; // state of planting
@@ -78,10 +80,9 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       State productionState;  // state of production
       string notice;
 
-      // Fields for production
-      uint numFields;
       mapping (uint => Field) fields;
-      mapping (uint => uint) bottleIDs;
+      uint bottleCount;
+      mapping (uint => uint)  bottleIDs;
   }
 
   // Define a struct 'Item' with the following fields:
@@ -115,7 +116,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
   modifier onlyOwner() {
-      require(msg.sender == owner, "Not the owner!");
+      require(msg.sender == contractOwner, "Not the owner!");
       _;
   }
 
@@ -141,25 +142,25 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
 
   // Define a modifier that checks if an item.state of a upc is Harvested
   modifier harvested(uint _productionID) {
-    require(oilProductions[_upc].productionState == State.Harvested);
+    require(oilProductions[_productionID].productionState == State.Harvested);
     _;
   }
 
   // Define a modifier that checks if an item.state of a upc is Processed
   modifier pressed(uint _productionID) {
-    require(oilProductions[_upc].productionState == State.Pressed, "Not Pressed");
+    require(oilProductions[_productionID].productionState == State.Pressed, "Not Pressed");
     _;
   }
 
   // Define a modifier that checks if an item.state of a upc is Packed
   modifier bottled(uint _productionID) {
-    require(oilProductions[_upc].productionState == State.Bottled, "Not Bottled");
+    require(oilProductions[_productionID].productionState == State.Bottled, "Not Bottled");
     _;
   }
 
   // Define a modifier that checks if an item.state of a upc is ForSale
-  modifier delivered(uint _production) {
-    require(oilProductions[_upc].productionState == State.Delivered, "Not Delivered");
+  modifier delivered(uint _productionID) {
+    require(oilProductions[_productionID].productionState == State.Delivered, "Not Delivered");
     _;
   }
 
@@ -179,27 +180,25 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-      owner = msg.sender;
+      contractOwner = msg.sender;
       upc = 1;
       oilProductionID = 1;
   }
 
   // Define a function 'kill' if required
   function kill() public {
-      if (msg.sender == owner) {
-        selfdestruct(owner);
-      }
+    if (msg.sender == address(contractOwner)) {
+      selfdestruct(msg.sender);
+    }
   }
 
-
   // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-  function harvest(uint _productionId, string _farmerName, uint _harvestDate,
-      uint _fieldId, string _fieldName, string _latitude, string _longitude)
+  function harvest(uint _productionId, string memory  _farmerName, uint _harvestDate,
+      uint _fieldId, string memory _fieldName, string memory _latitude, string memory _longitude)
       public
-      onlyFarmer
+      onlyFarmer()
   {
 
-      // Increment sku
       OilProduction memory production;
       production.productionID = _productionId;
 
@@ -213,22 +212,23 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       oilProductions[production.productionID] = production;
       oilProductionID += 1;
 
-      // Next version can add more fields
+      // Only one field data to show how it works (Prototype).
+      // In professional version separate method for add field, and get field data
       Field memory field;
-      field.fieldId = _fieldId;
+      field.fieldID = _fieldId;
       field.fieldName = _fieldName;
       field.latitude = _latitude;
       field.longitude = _longitude;
       field.fieldState = FieldState.Harvested;
-      production.fields[field.fieldId] = field;
+      oilProductions[production.productionID].fields[1] = field;
 
-         // Emit the appropriate event
+      // Emit the appropriate event
       emit Harvested(production.productionID);
   }
 
-  function press(uint _productionId, string _millName, uint _amountLiters, uint _pressDate)
+  function press(uint _productionId, string memory _millName, uint _amountLiters, uint _pressDate)
       public
-      onlyMill
+      onlyMill()
       harvested(_productionId)
   {
       OilProduction storage production = oilProductions[_productionId];
@@ -249,16 +249,20 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       onlyMill
       pressed(_productionID)
   {
-      OilProduction storage production = oilProductions[_productionId];
+      OilProduction storage production = oilProductions[_productionID];
       production.bottlingDate = _bottlingDate;
       production.productionState = State.Bottled;
 
-      sku=1;
+      // generate sku with oilProductionID at the beginning.
+      sku=(production.productionID * factorProductID);
+      production.bottleCount=0;
       for (uint i=0; i < production.amountLiters; i++) {
         Bottle memory bottle;
         bottle.upc = upc;
-        bottle.sku = sku;
-        bottle.productID = upc + sku;
+        bottle.sku = sku + i;
+
+        // generate productionID from upc and sku.
+        bottle.productID = (upc * factorProductID) + sku;
         bottle.oilProductionID = production.productionID;
         bottle.ownerID = production.millID;
         bottle.millID = production.millID;
@@ -267,9 +271,8 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
         bottles[upc] = bottle;
         // List for delivery and later control
         production.bottleIDs[i] = upc;
-
+        production.bottleCount += 1;
         upc += 1;
-        sku += 1;
       }
       emit Bottled(production.productionID);
   }
@@ -279,13 +282,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       onlyMill
       bottled(_productionID)
    {
-      OilProduction storage production = oilProductions[_productionId];
+      OilProduction storage production = oilProductions[_productionID];
       production.ownerID = msg.sender;
       production.shopID = msg.sender;
-      production.deliveryDate = _deliveryDateDate;
+      production.deliveryDate = _deliveryDate;
       production.productionState = State.Delivered;
 
-      for (uint i=0; i < production.bottleIDs.length; i++) {
+      for (uint i=0; i < production.bottleCount; i++) {
           Bottle storage bottle = bottles[production.bottleIDs[i]];
           bottle.ownerID = msg.sender;
           bottle.shopID = msg.sender;
@@ -301,13 +304,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       onlyShop
       delivered(_productionID)
   {
-    OilProduction storage production = oilProductions[_productionId];
+    OilProduction storage production = oilProductions[_productionID];
     production.ownerID = msg.sender;
     production.shopID = msg.sender;
     production.inShopDate = _inShopDate;
     production.productionState = State.InShop;
 
-    for (uint i=0; i < production.bottleIDs.length; i++) {
+    for (uint i=0; i < production.bottleCount; i++) {
       Bottle storage bottle = bottles[production.bottleIDs[i]];
       bottle.ownerID = msg.sender;
       bottle.shopID = msg.sender;
@@ -315,69 +318,43 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       bottle.bottleState = State.InShop;
     }
 
-    emit GetDelivery(production.productionID);
+    emit InShop(production.productionID);
   }
 
   function sellBottle(uint _upc)
     public
     payable
-    onlyCustomer
+    onlyCostumer
     inShop(_upc)
     paidEnough(bottles[_upc].price)
     checkValue(_upc)
   {
     Bottle storage bottle = bottles[_upc];
-    address shopID = bottle.ownerID;
 
     bottle.bottleState = State.Sold;
     bottle.ownerID = msg.sender;
     bottle.costumerID = msg.sender;
 
+    address payable shopID = address(uint160(bottle.shopID));
     shopID.transfer(bottle.price);
 
     emit Sold(bottle.upc);
   }
 
-
-
-
-  // Define a function 'fetchItemBufferOne' that fetches the data
   function fetchOilProduction(uint _productionID) public view returns
   (
       address,
       address,
       address,
       address,
-      string,
-      string,
+      string memory,
+      string memory,
       uint,
-      uint,
-      uint,
-      uint,
-      uint,
-      uint,
-      State,
-      string,
-      string,
-      string,
-      string
+      uint
+
   )
   {
-
-      // TEST
-      string fieldName="";
-      string latitude="";
-      string longitude="";
-
-      OilProduction memory oilProduction = oilProduction[_productionID];
-      // TEST
-      if (oilProduction.numFields >= 1) {
-          Field memory field = oilProduction.fieds[1];
-          fieldName = field.fieldName;
-          latitude = field.latitude;
-          longitude = field.longitude;
-      }
-
+      OilProduction storage oilProduction = oilProductions[_productionID];
       return
       (
           oilProduction.ownerID,
@@ -387,16 +364,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
           oilProduction.farmerName,
           oilProduction.millName,
           oilProduction.harvestDate,
-          oilProduction.pressDate.
-          oilProduction.bottlingDate,
-          oilProduction.deliveryDate,
-          oilProduction.inShopDate,
-          oilProduction.amountLiters,
-          oilProduction.productionState,
-          oilProduction.notice,
-          fieldName,
-          latitude,
-          longitude
+          oilProduction.pressDate
       );
   }
 
@@ -411,13 +379,9 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       address,
       address,
       uint,
-      uint,
-      uint,
-      uint,
       uint
   )
   {
-    // Assign values to the 9 parameters
     Bottle memory bottle = bottles[_upc];
     return
     (
@@ -428,11 +392,8 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, ConstumerRole {
       bottle.shopID,
       bottle.costumerID,
       bottle.bottleDate,
-      bottle.inShopDate,
-      bottle.sellDate,
-      bottle.oilProductionID,
-      bottle.State,
-      bottle.bottleState
+      bottle.inShopDate
+
     );
   }
 }

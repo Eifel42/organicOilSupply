@@ -6,37 +6,33 @@ import '../access_control/ShopRole.sol';
 import '../access_control/MillRole.sol';
 import '../core/Ownable.sol';
 
+
+/** @title  Organic Oil Manufacturer
+  * @author Stefan Zils
+  * @notice Organic Oil Manufacturer SupplyChain implementation for farmer to customer.
+  */
 contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
 
   // Define 'owner'
   address contractOwner;
-
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
-
   // Define a variable called 'sku' for Stock Keeping Unit (SKU)
   uint  sku;
-
   // Oil Production Sequence
   uint oilProductionID;
   // Fields for production
   uint fieldIDs;
+  // Define
+  uint constant factorProductID = 1000;
 
-  // Define a public mapping 'items' that maps the UPC to an Item.
+  // Define a public mapping 'bottles' that maps the UPC to a bottle.
   mapping(uint => Bottle) bottles;
-  //
+  // Define a public papping 'oilProductions' that maps the productionID to an OilProduction.
   mapping(uint => OilProduction) oilProductions;
 
 
-  enum FieldState
-  {
-      Planted, // 0
-      Harvested // 1
-  }
-
-  uint constant factorProductID = 1000;
-
-  // Define enum 'State' with the following values:
+   // Define enum 'State' with the following values:
   enum State
   {
       Harvested,     // 0
@@ -47,17 +43,8 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       Sold           // 5
   }
 
-  struct Field {
-      uint fieldID;          // Field ID
-      string fieldName;      // Field Name
 
-      FieldState fieldState; // state of planting
-
-      // Coordination of the Field
-      string latitude;
-      string longitude;
-  }
-
+  // Struct of the oil production process.
   struct OilProduction {
       uint productionID;    // ID of Oil Production
 
@@ -77,10 +64,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       uint inShopDate;
       uint amountLiters;
 
+      string fieldName;      // Field Name
+      string fieldLatitude;
+      string fieldLongitude;
+
       State productionState;  // state of production
       string notice;
 
-      mapping (uint => Field) fields;
       uint bottleCount;
       mapping (uint => uint)  bottleIDs;
   }
@@ -192,39 +182,45 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     }
   }
 
-  // Define a function 'harvestItem' that allows a farmer to mark an item 'Harvested'
-  function harvest(uint _productionId, string memory  _farmerName, uint _harvestDate,
-      uint _fieldId, string memory _fieldName, string memory _latitude, string memory _longitude)
+   /**
+     * @dev trigger the harvest as first step ot the OilProduction.
+     * @param _productionID ID of the OilProduction process.
+     * @param _farmerID address of the farmer
+     * @param _farmerName the name of the farm.
+     * @param _harvestDate date of harvesting.
+     * @param _fieldName the name of the field.
+     * @param _latitude the latitude of the field.
+     * @param _longitude the longitude of the field.
+     */
+  function harvest(uint _productionID, address _farmerID, string memory  _farmerName, uint _harvestDate,
+      string memory _fieldName, string memory _latitude, string memory _longitude)
       public
       onlyFarmer()
   {
 
-      OilProduction memory production;
-      production.productionID = _productionId;
+      addFarmer(_farmerID);
+      transferOwnership(_farmerID);
 
-      production.ownerID = msg.sender;
-      production.farmerID = msg.sender;
+      OilProduction memory production;
+      production.productionID = _productionID;
+      production.farmerID = _farmerID;
 
       production.farmerName = _farmerName;
       production.harvestDate = _harvestDate;
       production.productionState = State.Harvested;
+      production.fieldName = _fieldName;
+      production.fieldLatitude = _latitude;
+      production.fieldLongitude = _longitude;
+
 
       oilProductions[production.productionID] = production;
       oilProductionID += 1;
 
-      // Only one field data to show how it works (Prototype).
-      // In professional version separate method for add field, and get field data
-      Field memory field;
-      field.fieldID = _fieldId;
-      field.fieldName = _fieldName;
-      field.latitude = _latitude;
-      field.longitude = _longitude;
-      field.fieldState = FieldState.Harvested;
-      oilProductions[production.productionID].fields[1] = field;
-
       // Emit the appropriate event
       emit Harvested(production.productionID);
   }
+
+
 
   function press(uint _productionId, string memory _millName, uint _amountLiters, uint _pressDate)
       public
@@ -341,17 +337,16 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     emit Sold(bottle.upc);
   }
 
-  function fetchOilProduction(uint _productionID) public view returns
+  function fetchOilProductionFarm(uint _productionID) public view returns
   (
       address,
       address,
-      address,
-      address,
-      string memory,
       string memory,
       uint,
-      uint
-
+      string memory,
+      string memory,
+      string memory,
+      State
   )
   {
       OilProduction storage oilProduction = oilProductions[_productionID];
@@ -359,12 +354,12 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       (
           oilProduction.ownerID,
           oilProduction.farmerID,
-          oilProduction.millID,
-          oilProduction.shopID,
           oilProduction.farmerName,
-          oilProduction.millName,
           oilProduction.harvestDate,
-          oilProduction.pressDate
+          oilProduction.fieldName,
+          oilProduction.fieldLatitude,
+          oilProduction.fieldLongitude,
+          oilProduction.productionState
       );
   }
 

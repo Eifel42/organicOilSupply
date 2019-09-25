@@ -12,9 +12,9 @@ The DApp User Interface when running should look like...
 
 ![truffle test](images/ftc_transaction_history.png)
 
-## Concept UML
+## Business Concept (Story / UML)
 
-![UML](uml/uml.md)
+![Organic Oil story in UML](uml/uml.md)
 
 ## Getting Started
 

@@ -1,4 +1,4 @@
-pragma solidity ^0.5.8;
+pragma solidity ^0.4.24;
 // Define a contract 'Supplychain'
 import '../access_control/CostumerRole.sol';
 import '../access_control/FarmerRole.sol';
@@ -13,8 +13,6 @@ import '../core/Ownable.sol';
   */
 contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
 
-  // Define 'owner'
-  address contractOwner;
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
   // Define a variable called 'sku' for Stock Keeping Unit (SKU)
@@ -97,16 +95,16 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   }
 
   // Define 8 events with the same 8 state values and accept 'upc' as input argument
-  event Harvested(uint upc);
-  event Pressed(uint upc);
-  event Bottled(uint upc);
-  event Delivered(uint upc);
+  event Harvested(uint productionID);
+  event Pressed(uint productionID);
+  event Bottled(uint productionID);
+  event Delivered(uint productionID);
   event InShop(uint upc);
   event Sold(uint upc);
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
   modifier onlyOwner() {
-      require(msg.sender == contractOwner, "Not the owner!");
+      require(isOwner(), "Not the owner!");
       _;
   }
 
@@ -170,14 +168,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-      contractOwner = msg.sender;
       upc = 1;
       oilProductionID = 1;
   }
 
   // Define a function 'kill' if required
   function kill() public {
-    if (msg.sender == address(contractOwner)) {
+    if (isOwner()) {
       selfdestruct(msg.sender);
     }
   }
@@ -197,12 +194,9 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       public
       onlyFarmer()
   {
-
-      addFarmer(_farmerID);
-      transferOwnership(_farmerID);
-
       OilProduction memory production;
       production.productionID = _productionID;
+      production.ownerID = _farmerID;
       production.farmerID = _farmerID;
 
       production.farmerName = _farmerName;
@@ -217,7 +211,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       oilProductionID += 1;
 
       // Emit the appropriate event
-      emit Harvested(production.productionID);
+      emit Harvested(_productionID);
   }
 
 
@@ -331,7 +325,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     bottle.ownerID = msg.sender;
     bottle.costumerID = msg.sender;
 
-    address payable shopID = address(uint160(bottle.shopID));
+    address shopID = address(uint160(bottle.shopID));
     shopID.transfer(bottle.price);
 
     emit Sold(bottle.upc);

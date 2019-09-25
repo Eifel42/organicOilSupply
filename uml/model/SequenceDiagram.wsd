@@ -1,0 +1,30 @@
+@startuml
+scale 2
+entity Field
+actor Farmer
+actor Mill
+entity Bottle
+actor Shop 
+actor Customer
+Farmer -> Field : harvest
+activate Farmer
+activate Field
+Farmer -> Mill : transport
+activate Mill
+Field --> Mill : oil seed
+deactivate Field
+deactivate Farmer
+Mill -> Mill : press 
+Mill -> Bottle : bottling
+activate Bottle
+Bottle --> Mill 
+Mill -> Shop : transport
+activate Shop
+Bottle --> Shop
+deactivate Mill
+Shop -> Shop :  get delivery
+Shop -> Shop : present bottle
+Customer -> Shop : buy oil
+activate Customer
+Bottle --> Customer
+@enduml

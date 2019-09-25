@@ -1,0 +1,45 @@
+@startuml
+scale 2
+package OliProduction {
+    
+    class Field {
+        - uint fieldID
+        - address farmerID
+        - String fieldName
+        - FieldState state
+        - String latidue
+        - String longitude
+    }
+
+    class OilProduction {
+        - uint productionID
+
+        - address farmerID
+        - address millID
+
+        - timestamp harvestDate
+        - timestamp pressDate
+        - timestamp bootlingDate
+        - timestamp deliveryDate
+        - uint amountLiters
+        - State oilProduceState
+        - String Notice  
+    }
+
+    class Bottle {
+        - uint ID
+        - unit productionID
+        - address ownerID
+        - address shopID
+        - address customerID
+        - timestamp inShopDate
+        - timestamp sellDate
+        - String Notice  
+        - State bootleState
+    }
+
+    Field "1:n" <- "0:n" OliProduction : harvested
+    OliProduction "1" <-> "0:n" Bottle : bottled
+
+}
+@enduml

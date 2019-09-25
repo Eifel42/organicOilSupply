@@ -1,0 +1,51 @@
+@startuml
+package SmartContract {
+    scale 2
+     class Core  {
+        + newContractAddress: address
+        + owner: address
+        + upgrade(newContractAddress): address
+        + ownable(owner): address
+        + pause(bootleID): unit256
+
+    }
+
+     class Base {
+        + Field
+        + OilProduction
+        + Bootle
+        + harvest()
+        + transport(State enum)
+        + press()
+        + bootling()
+        + getDelivery(Address sellerAddress)
+        + presentOil(bootleId)
+        + buyOil(bootleId, buyerAddress)
+    }
+
+    class AccessControl {
+        + setManufactor(manufactorAddress): address
+        + setSeller(manufactorAddress): address
+        + setBuyer(buyerAddress): address
+    }
+
+     class Manufactor {
+        + manufactorAddress: address
+    }
+
+    class Seller {
+        + sellerAddress: address
+    }
+ 
+    class Buyer {
+        + buyerAddress: address
+    }  
+
+    Base <|-- Core
+    AccessControl <|-- Base
+    Manufactor --|> AccessControl
+    Seller --|> AccessControl
+    Buyer --|> AccessControl
+    
+}
+@enduml

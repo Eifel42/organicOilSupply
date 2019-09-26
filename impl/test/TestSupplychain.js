@@ -16,7 +16,7 @@ contract('SupplyChain', function(accounts) {
     const fieldName = "Goldfield";
     const latitude = "-38.239770";
     const longitude = "144.341490";
-
+    const price = web3.utils.toWei('1', 'ether');
 
    /* let productID = sku + upc;
     const productNotes = "Best beans for Espresso";
@@ -68,7 +68,9 @@ contract('SupplyChain', function(accounts) {
         assert.equal(result[6], longitude, 'Error: Missing or Invalid longitude');
         assert.equal(result[7], 0, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted');
-    })
+    });
+
+
 
     // 2nd Test
     it("Testing smart contract function processItem() that allows a farmer to process coffee", async() => {

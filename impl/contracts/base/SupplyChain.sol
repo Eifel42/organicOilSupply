@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.8;
 // Define a contract 'Supplychain'
 import '../access_control/CostumerRole.sol';
 import '../access_control/FarmerRole.sol';
@@ -325,7 +325,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     bottle.ownerID = msg.sender;
     bottle.costumerID = msg.sender;
 
-    address shopID = address(uint160(bottle.shopID));
+    address payable shopID = address(uint160(bottle.shopID));
     shopID.transfer(bottle.price);
 
     emit Sold(bottle.upc);

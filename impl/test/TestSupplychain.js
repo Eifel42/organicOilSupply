@@ -12,6 +12,8 @@ contract('SupplyChain', function(accounts) {
     const productionID = 1;
     const ownerID = accounts[0];
     const farmerID = accounts[1];
+    const unkownID = accounts[9];
+
     const farmerName = "Eifel Gold";
     const fieldName = "Goldfield";
     const latitude = "-38.239770";
@@ -37,13 +39,11 @@ contract('SupplyChain', function(accounts) {
     // 1st Test
     it("Testing smart contract function harvest that allows a farmer to harvest the seed", async() => {
         const callerID = ownerID;
-        const supplyChain = await SupplyChain.new( {from: callerID});
-         // Add Address to farmerRoll
+        const supplyChain = await SupplyChain.deployed({from: callerID});
         await supplyChain.addFarmer(farmerID, {from: callerID});
 
-
         // Declare and Initialize a variable for event
-       let eventEmitted = false;
+        let eventEmitted = false;
 
         // Watch the emitted event Harvested()
         let event = await supplyChain.Harvested({}, (err, res) => {
@@ -51,6 +51,9 @@ contract('SupplyChain', function(accounts) {
         });
 
         let harvestTime = Date.now();
+        truffleAssert.reverts(supplyChain.harvest(productionID, farmerID, farmerName, harvestTime, fieldName,
+        latitude, longitude, {from: unkownID}), null, 'Unkown can harvest!!');
+
         // Mark an item as Harvested by calling function harvestItem()
         await supplyChain.harvest(productionID, farmerID, farmerName, harvestTime, fieldName,
           latitude, longitude, {from: farmerID});
@@ -69,7 +72,6 @@ contract('SupplyChain', function(accounts) {
         assert.equal(result[7], 0, 'Error: Invalid item State');
         assert.equal(eventEmitted, true, 'Invalid event emitted');
     });
-
 
 
     // 2nd Test

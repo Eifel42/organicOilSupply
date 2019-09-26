@@ -180,7 +180,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   }
 
    /**
-     * @dev trigger the harvest as first step ot the OilProduction.
+     * @dev describe the harvest as the first step of the OilProduction.
      * @param _productionID ID of the OilProduction process.
      * @param _farmerID address of the farmer
      * @param _farmerName the name of the farm.
@@ -188,6 +188,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
      * @param _fieldName the name of the field.
      * @param _latitude the latitude of the field.
      * @param _longitude the longitude of the field.
+     * @notice emit the Harvested Event. Only farmers can trigger this method.
      */
   function harvest(uint _productionID, address _farmerID, string memory  _farmerName, uint _harvestDate,
       string memory _fieldName, string memory _latitude, string memory _longitude)
@@ -206,7 +207,6 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       production.fieldLatitude = _latitude;
       production.fieldLongitude = _longitude;
 
-
       oilProductions[production.productionID] = production;
       oilProductionID += 1;
 
@@ -215,16 +215,23 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   }
 
 
-
-  function press(uint _productionId, string memory _millName, uint _amountLiters, uint _pressDate)
+   /**
+     * @dev describe the oil pressing process of the OilProduction.
+     * @param _productionID ID of the OilProduction process.
+     * @param _millName name of the mill.
+     * @param _amountLiters the number of liters of pressed oil.
+     * @param _pressDate date of the pressing.
+     * @notice emit the Pressed Event. Only millers can trigger this method.
+     */
+  function press(uint _productionID, address _millID, string memory _millName, uint _amountLiters, uint _pressDate)
       public
       onlyMill()
-      harvested(_productionId)
+      harvested(_productionID)
   {
-      OilProduction storage production = oilProductions[_productionId];
+      OilProduction storage production = oilProductions[_productionID];
 
-      production.ownerID = msg.sender;
-      production.millID = msg.sender;
+      production.ownerID = _millID;
+      production.millID = _millID;
 
       production.millName = _millName;
       production.pressDate = _pressDate;
@@ -234,6 +241,12 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       emit Pressed(production.productionID);
   }
 
+   /**
+     * @dev describe the bottling process of the OilProduction.
+     * @param _productionID ID of the OilProduction process.
+     * @param _bottlingDate date of bottling.
+     * @notice emit the Bottled Event. Only millers can trigger this method.
+     */
   function bottling(uint _productionID, uint _bottlingDate)
       public
       onlyMill
@@ -331,6 +344,10 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     emit Sold(bottle.upc);
   }
 
+  /**
+    * @dev fetch the oil production data from the farm perspective.
+    * @param _productionID ID of the OilProduction process.
+    */
   function fetchOilProductionFarm(uint _productionID) public view returns
   (
       address,
@@ -353,6 +370,42 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
           oilProduction.fieldName,
           oilProduction.fieldLatitude,
           oilProduction.fieldLongitude,
+          oilProduction.productionState
+      );
+  }
+
+    /**
+    * @dev fetch the oil production data from the mill and shop perspective.
+    * @param _productionID ID of the OilProduction process.
+    */
+  function fetchOilProduction(uint _productionID) public view returns
+  (
+      address,
+      address,
+      address,
+      string memory,
+      uint,
+      uint,
+      uint,
+      uint,
+      uint,  
+      uint,
+      State
+  )
+  {
+      OilProduction storage oilProduction = oilProductions[_productionID];
+      return
+      (
+          oilProduction.ownerID,
+          oilProduction.millID,
+          oilProduction.shopID,
+          oilProduction.millName,
+          oilProduction.pressDate,
+          oilProduction.amountLiters,
+          oilProduction.bottlingDate,
+          oilProduction.deliveryDate,
+          oilProduction.inShopDate,
+          oilProduction.bottleCount,     
           oilProduction.productionState
       );
   }

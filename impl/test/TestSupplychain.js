@@ -12,29 +12,39 @@ contract('SupplyChain', function(accounts) {
     const productionID = 1;
     const ownerID = accounts[0];
     const farmerID = accounts[1];
+    const millID = accounts[2];
+    const shopID = accounts[3];
+    const customerID = accounts[4];
     const unkownID = accounts[9];
 
-    const farmerName = "Eifel Gold";
+    // Farm Test Data
+    const farmerName = "Eifel Gold Oil Farm";
     const fieldName = "Goldfield";
     const latitude = "-38.239770";
     const longitude = "144.341490";
-    const price = web3.utils.toWei('1', 'ether');
+
+    // Mill Test Data
+    const millName = "Eifel Small River Mill";
+    const amountLiters = "10";
+    const harvestTime = Date.now();
+    const pressTime = Date.now()+10000;
+    const bottlingTime = Date.now()+20000;
+
+
+  const price = web3.utils.toWei('1', 'ether');
 
    /* let productID = sku + upc;
-    const productNotes = "Best beans for Espresso";
-    const productPrice = web3.toWei(1, "ether");
-    const distributorID = accounts[2];
-    const retailerID = accounts[3];
-    const consumerID = accounts[4];
+
     */
     const emptyAddress = '0x00000000000000000000000000000000000000';
 
     console.log("ganache-cli accounts used here...");
-    console.log("Contract Owner: accounts[0] ", accounts[0]);
-    console.log("Farmer: accounts[1] ", accounts[1]);
-    console.log("Mill: accounts[2] ", accounts[2]);
-    console.log("Shop: accounts[3] ", accounts[3]);
-    console.log("Costumer: accounts[4] ", accounts[4]);
+    console.log("Contract Owner: accounts[0] ", ownerID);
+    console.log("Farmer: accounts[1] ", farmerID);
+    console.log("Mill: accounts[2] ", millID);
+    console.log("Shop: accounts[3] ", shopID);
+    console.log("Costumer: accounts[4] ", customerID);
+    console.log("Unkown: accounts[9] ", unkownID);
 
     // 1st Test
     it("Testing smart contract function harvest that allows a farmer to harvest the seed", async() => {
@@ -50,7 +60,6 @@ contract('SupplyChain', function(accounts) {
             eventEmitted = true;
         });
 
-        let harvestTime = Date.now();
         truffleAssert.reverts(supplyChain.harvest(productionID, farmerID, farmerName, harvestTime, fieldName,
         latitude, longitude, {from: unkownID}), null, 'Unkown can harvest!!');
 
@@ -62,57 +71,87 @@ contract('SupplyChain', function(accounts) {
         const result = await supplyChain.fetchOilProductionFarm.call(productionID, {from: callerID});
 
         // Verify the result set
-        assert.equal(result[0], farmerID, 'Error: Missing or Invalid ownerID, Farmer is Owner of the oilproduction');
+        assert.equal(result[0], farmerID, 'Error: Missing or Invalid ownerID, Farmer is Owner of the OilProduction');
         assert.equal(result[1], farmerID, 'Error: Missing or Invalid farmerID');
         assert.equal(result[2], farmerName, 'Error: Missing or Invalid farmerName');
         assert.equal(result[3], harvestTime, 'Error: Missing or Invalid harvestTime');
         assert.equal(result[4], fieldName, 'Error: Missing or Invalid fieldName');
         assert.equal(result[5], latitude, 'Error: Missing or Invalid latitude');
         assert.equal(result[6], longitude, 'Error: Missing or Invalid longitude');
-        assert.equal(result[7], 0, 'Error: Invalid item State');
+        assert.equal(result[7], 0, 'Error: Invalid OilProduction State');
         assert.equal(eventEmitted, true, 'Invalid event emitted');
     });
 
 
     // 2nd Test
-    it("Testing smart contract function processItem() that allows a farmer to process coffee", async() => {
-        const supplyChain = await SupplyChain.deployed()
+    it("Testing the smart contract function press that allows a miller to press oil", async() => {
+        const callerID = ownerID;
+        const supplyChain = await SupplyChain.deployed({from: callerID});
+        await supplyChain.addMill(millID, {from: callerID});
 
         // Declare and Initialize a variable for event
+        let eventEmitted = false;
 
+        // Watch the emitted event Harvested()
+        let event = await supplyChain.Pressed({}, (err, res) => {
+          eventEmitted = true;
+        });
 
-        // Watch the emitted event Processed()
+        truffleAssert.reverts(supplyChain.press(productionID, millID, millName, amountLiters, pressTime,
+          {from: unkownID}), null, 'Unkown can press!!');
 
+        // Mark an item as Harvested by calling function harvestItem()
+        await supplyChain.press(productionID, millID, millName, amountLiters, pressTime, {from: millID});
 
-        // Mark an item as Processed by calling function processtItem()
-
-
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
+        // Retrieve farm data from oil production
+        const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
 
         // Verify the result set
-
-    })
+        assert.equal(result[0], millID, 'Error: Missing or Invalid ownerID, Miller is Owner of the Oilproduction');
+        assert.equal(result[1], millID, 'Error: Missing or Invalid millID');
+        assert.equal(result[3], millName, 'Error: Missing or Invalid millName');
+        assert.equal(result[4], pressTime, 'Error: Missing or Invalid pressTime');
+        assert.equal(result[5], amountLiters, 'Error: Missing or Invalid amountLiters');
+        assert.equal(result[10], 1, 'Error: Invalid item State');
+        assert.equal(eventEmitted, true, 'Invalid event emitted');
+    });
 
     // 3rd Test
-    it("Testing smart contract function packItem() that allows a farmer to pack coffee", async() => {
-        const supplyChain = await SupplyChain.deployed()
-
+    it("Testing the smart contract function bottling that enables a miller to bottle the oil", async() => {
+        const callerID = ownerID;
+        const supplyChain = await SupplyChain.deployed({from: callerID});
         // Declare and Initialize a variable for event
+        let eventEmitted = false;
 
+        // Watch the emitted event Harvested()
+        let event = await supplyChain.Bottled({}, (err, res) => {
+          eventEmitted = true;
+        });
 
-        // Watch the emitted event Packed()
+        truffleAssert.reverts(supplyChain.bottling(productionID, bottlingTime,
+          {from: unkownID}), null, 'Unkown can press!!');
 
+        // Mark an item as Harvested by calling function harvestItem()
+        await supplyChain.bottling(productionID, bottlingTime, {from: millID});
 
-        // Mark an item as Packed by calling function packItem()
-
-
-        // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
+        // Retrieve farm data from oil production
+        const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
 
         // Verify the result set
+        assert.equal(result[0], millID, 'Error: Missing or Invalid ownerID, Miller is Owner of the Oilproduction');
+        assert.equal(result[1], millID, 'Error: Missing or Invalid millID');
+        assert.equal(result[3], millName, 'Error: Missing or Invalid millName');
+        assert.equal(result[4], pressTime, 'Error: Missing or Invalid pressTime');
+        assert.equal(result[5], amountLiters, 'Error: Missing or Invalid amountLiters');
+        assert.equal(result[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
+        assert.equal(result[10], 2, 'Error: Invalid item State');
+        assert.equal(eventEmitted, true, 'Invalid event emitted');
 
-    })
+        
+
+
+
+    });
 
     // 4th Test
     it("Testing smart contract function sellItem() that allows a farmer to sell coffee", async() => {

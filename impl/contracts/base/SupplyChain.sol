@@ -37,7 +37,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       Pressed,       // 1
       Bottled,       // 2
       Delivered,     // 3
-      InShop,         // 4
+      InShop,        // 4
       Sold           // 5
   }
 
@@ -310,7 +310,14 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       emit Delivered(production.productionID);
   }
 
-
+  /**
+    * @dev describe the process of putting the bottles into the shop.
+    * @param _productionID ID of the OilProduction process.
+    * @param _inShopDate date of get delivery.
+    * @param _price price of the bottle.
+    * @notice emit the InShop Event. Only a shop can trigger the method 
+    * if the state is deliver (Delivered).
+    */
   function getDelivery(uint _productionID, uint _inShopDate, uint _price)
       public
       onlyShop
@@ -323,8 +330,9 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     for (uint i=0; i < production.bottleCount; i++) {
       Bottle storage bottle = bottles[production.bottleIDs[i]];
       bottle.price = _price;
+      bottle.inShopDate = _inShopDate;
       bottle.bottleState = State.InShop;
-    }
+    } 
 
     emit InShop(production.productionID);
   }

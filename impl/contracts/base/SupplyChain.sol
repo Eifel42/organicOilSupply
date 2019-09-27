@@ -263,10 +263,10 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       for (uint i=0; i < production.amountLiters; i++) {
         Bottle memory bottle;
         bottle.upc = upc;
-        bottle.sku = sku + i;
+        bottle.sku = sku;
 
         // generate productionID from upc and sku.
-        bottle.productID = (upc * factorProductID) + sku;
+        bottle.productID = bottle.upc + bottle.sku;
         bottle.oilProductionID = production.productionID;
         bottle.ownerID = production.millID;
         bottle.millID = production.millID;
@@ -337,7 +337,15 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     emit InShop(production.productionID);
   }
 
-  function sellBottle(uint _upc)
+  /**
+    * @dev describe the process of buying a bottle.
+    * @param _upc Universal Product Code, identifier to fetch a bottle in the supply chain.
+    * @param _customerID address of the customer.
+    * @param _sellDate price of the bottle.
+    * @notice emit the Sold Event. Only a customer can trigger the method 
+    * if the state is in shop (InShop) and the customer pay enough.
+   */
+  function buyBottle(uint _upc, address _customerID, uint _sellDate)
     public
     payable
     onlyCostumer
@@ -348,8 +356,9 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     Bottle storage bottle = bottles[_upc];
 
     bottle.bottleState = State.Sold;
-    bottle.ownerID = msg.sender;
-    bottle.costumerID = msg.sender;
+    bottle.sellDate = _sellDate;
+    bottle.ownerID = _customerID;
+    bottle.costumerID = _customerID;
 
     address payable shopID = address(uint160(bottle.shopID));
     shopID.transfer(bottle.price);

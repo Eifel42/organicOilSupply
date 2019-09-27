@@ -6,6 +6,7 @@ const truffleAssert = require('truffle-assertions');
 contract('SupplyChain', function (accounts) {
 
   const productionID = 1;
+  const upc = 1;
   const orginOwnerID = accounts[0];
   const farmerID = accounts[1];
   const millID = accounts[2];
@@ -27,9 +28,11 @@ contract('SupplyChain', function (accounts) {
   const bottlingTime = Date.now() + 20000;
   const deliverTime = Date.now() + 30000;
   const shopTime = Date.now() + 40000;
+  const sellTime = Date.now() + 50000;
 
 
   const bottlePrice = web3.utils.toWei('1', 'ether');
+  const payment = web3.utils.toWei('2.5', 'ether');
 
   /* let productID = sku + upc;
 
@@ -139,6 +142,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(result[4], pressTime, 'Error: Missing or Invalid pressTime');
     assert.equal(result[5], amountLiters, 'Error: Missing or Invalid amountLiters');
     assert.equal(result[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(result[9], 10, 'Error: Missing or Invalid bottleCounts');
     assert.equal(result[10], 2, 'Error: Invalid item State');
     assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
@@ -181,6 +185,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(result[5], amountLiters, 'Error: Missing or Invalid amountLiters');
     assert.equal(result[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
     assert.equal(result[7], deliverTime, 'Error: Missing or Invalid deliverDate');
+    assert.equal(result[9], 10, 'Error: Missing or Invalid bottleCounts');
     assert.equal(result[10], 3, 'Error: Invalid item State');
     assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
@@ -227,6 +232,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(result[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
     assert.equal(result[7], deliverTime, 'Error: Missing or Invalid deliverDate');
     assert.equal(result[8], shopTime, 'Error: Missing or Invalid deliverDate');
+    assert.equal(result[9], 10, 'Error: Missing or Invalid bottleCounts');
     assert.equal(result[10], 4, 'Error: Invalid item State');
     assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
@@ -243,86 +249,108 @@ contract('SupplyChain', function (accounts) {
   });
 
   // 6th Test
-  it("Testing smart contract function shipItem() that allows a distributor to ship coffee", async () => {
-    const supplyChain = await SupplyChain.deployed()
+  it("Testing smart contract function sellBottle that enables the shop to sell a bottle to the customer", async () => {
+
+    const callerID = orginOwnerID;
+    const supplyChain = await SupplyChain.deployed({from: callerID});
+    await supplyChain.addCostumer(customerID, {from: callerID});
 
     // Declare and Initialize a variable for event
+    let eventEmitted = false;
 
+    // Watch the emitted event Harvested()
+    let event = await supplyChain.Sold({}, (err, res) => {
+      eventEmitted = true;
+    });
 
-    // Watch the emitted event Shipped()
+    truffleAssert.reverts(supplyChain.buyBottle(upc, customerID, sellTime,
+      {from: unkownID}), null, 'Unkown can buy bottle!!');
 
+    await supplyChain.buyBottle(upc, customerID, sellTime, {from: customerID, value: payment});
 
-    // Mark an item as Sold by calling function buyItem()
+    // fetch last bottle of the oil Production
+    const bottleResult = await supplyChain.fetchBottle.call(upc, {from: callerID});
+    assert.equal(bottleResult[2], customerID, 'Error: Bottle owner ist not shop');
+    assert.equal(bottleResult[3], millID, 'Error: Missing or Invalid millID');
+    assert.equal(bottleResult[4], shopID, 'Error: Missing or Invalid shopID');
+    assert.equal(bottleResult[5], customerID, 'Error: Missing or Invalid customerID');
 
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-    // Verify the result set
+    assert.equal(bottleResult[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(bottleResult[7], shopTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(bottleResult[8], sellTime, 'Error: Missing or Invalid sellDate');
+    assert.equal(bottleResult[9], productionID, 'Error: Missing or Invalid productionID');
+    assert.equal(bottleResult[10], bottlePrice, 'Error: Missing or Invalid price');
+    assert.equal(bottleResult[11], 5, 'Error: Invalid item State Bottle');
+    assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
   });
 
+
   // 7th Test
-  it("Testing smart contract function receiveItem() that allows a retailer to mark coffee received", async () => {
-    const supplyChain = await SupplyChain.deployed()
+  it("Testing smart contract function fetchOilProductionFarm", async () => {
+    const callerID = orginOwnerID;
+    const supplyChain = await SupplyChain.deployed({from: callerID});
 
-    // Declare and Initialize a variable for event
+    const result = await supplyChain.fetchOilProductionFarm.call(productionID, {from: callerID});
 
+    assert.equal(result[0], shopID, 'Error: Missing or Invalid ownerID, Shop is Owner of the OilProduction');
+    assert.equal(result[1], farmerID, 'Error: Missing or Invalid farmerID');
+    assert.equal(result[2], farmerName, 'Error: Missing or Invalid farmerName');
+    assert.equal(result[3], harvestTime, 'Error: Missing or Invalid harvestTime');
+    assert.equal(result[4], fieldName, 'Error: Missing or Invalid fieldName');
+    assert.equal(result[5], latitude, 'Error: Missing or Invalid latitude');
+    assert.equal(result[6], longitude, 'Error: Missing or Invalid longitude');
+    assert.equal(result[7], 4, 'Error: Invalid OilProduction State');
 
-    // Watch the emitted event Received()
+  });
 
-
-    // Mark an item as Sold by calling function buyItem()
-
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-    // Verify the result set
-
-  })
 
   // 8th Test
-  it("Testing smart contract function purchaseItem() that allows a consumer to purchase coffee", async () => {
-    const supplyChain = await SupplyChain.deployed()
+  it("Testing smart contract function fetchOilProduction", async () => {
+    const callerID = orginOwnerID;
+    const supplyChain = await SupplyChain.deployed({from: callerID});
 
-    // Declare and Initialize a variable for event
-
-
-    // Watch the emitted event Purchased()
-
-
-    // Mark an item as Sold by calling function buyItem()
-
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
+    const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
 
     // Verify the result set
+    assert.equal(result[0], shopID, 'Error: Missing or Invalid ownerID, Shop is Owner of the OilProduction');
+    assert.equal(result[1], millID, 'Error: Missing or Invalid millID');
+    assert.equal(result[2], shopID, 'Error: Missing or Invalid shopID');
+    assert.equal(result[3], millName, 'Error: Missing or Invalid millName');
+    assert.equal(result[4], pressTime, 'Error: Missing or Invalid pressTime');
+    assert.equal(result[5], amountLiters, 'Error: Missing or Invalid amountLiters');
+    assert.equal(result[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(result[7], deliverTime, 'Error: Missing or Invalid deliverDate');
+    assert.equal(result[8], shopTime, 'Error: Missing or Invalid deliverDate');
+    assert.equal(result[9], 10, 'Error: Missing or Invalid bottleCounts');
+    assert.equal(result[10], 4, 'Error: Invalid item State');
 
-  })
+  });
 
   // 9th Test
-  it("Testing smart contract function fetchItemBufferOne() that allows anyone to fetch item details from blockchain", async () => {
-    const supplyChain = await SupplyChain.deployed()
+  it("Testing smart contract function fetchBottle", async () => {
 
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const callerID = orginOwnerID;
+    const supplyChain = await SupplyChain.deployed({from: callerID});
 
+    const bottleResult = await supplyChain.fetchBottle.call(upc, {from: callerID});
+    const sku=(bottleResult[9] * 1000);
+    assert.equal(bottleResult[0], sku, 'Error: Missing or Invalid sku');
+    assert.equal(bottleResult[1], upc + sku, 'Error: Missing or Invalid productID');
 
-    // Verify the result set:
+    assert.equal(bottleResult[2], customerID, 'Error: Bottle owner ist not shop');
+    assert.equal(bottleResult[3], millID, 'Error: Missing or Invalid millID');
+    assert.equal(bottleResult[4], shopID, 'Error: Missing or Invalid shopID');
+    assert.equal(bottleResult[5], customerID, 'Error: Missing or Invalid customerID');
 
-  })
+    assert.equal(bottleResult[6], bottlingTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(bottleResult[7], shopTime, 'Error: Missing or Invalid bottlingDate');
+    assert.equal(bottleResult[8], sellTime, 'Error: Missing or Invalid sellDate');
+    assert.equal(bottleResult[9], productionID, 'Error: Missing or Invalid productionID');
+    assert.equal(bottleResult[10], bottlePrice, 'Error: Missing or Invalid price');
+    assert.equal(bottleResult[11], 5, 'Error: Invalid item State Bottle');
 
-  // 10th Test
-  it("Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain", async () => {
-    const supplyChain = await SupplyChain.deployed()
-
-    // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-    // Verify the result set:
-
-  })
+  });
 
 });
 

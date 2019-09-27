@@ -270,6 +270,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
         bottle.ownerID = production.millID;
         bottle.millID = production.millID;
         bottle.bottleDate = _bottlingDate;
+        bottle.bottleState = State.Bottled;
 
         bottles[upc] = bottle;
         // List for delivery and later control
@@ -411,7 +412,10 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   }
 
 
-  // Define a function 'fetchItemBufferTwo' that fetches the data
+  /**
+    * @dev fetch a bottle.
+    * @param _upc Universal Product Code, identifier to fetch a bottle in the supply chain.
+    */  
   function fetchBottle(uint _upc) public view returns
   (
       uint,
@@ -421,21 +425,28 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       address,
       address,
       uint,
-      uint
+      uint,
+      uint,
+      uint,
+      uint,
+      State
   )
   {
     Bottle memory bottle = bottles[_upc];
     return
     (
-      bottle.sku,
-      bottle.productID,
-      bottle.ownerID,
-      bottle.millID,
-      bottle.shopID,
-      bottle.costumerID,
-      bottle.bottleDate,
-      bottle.inShopDate
-
+      bottle.sku,             // 0
+      bottle.productID,       // 1
+      bottle.ownerID,         // 2
+      bottle.millID,          // 3
+      bottle.shopID,          // 4
+      bottle.costumerID,      // 5
+      bottle.bottleDate,      // 6
+      bottle.inShopDate,      // 7
+      bottle.sellDate,        // 8
+      bottle.oilProductionID, // 9
+      bottle.price,           // 10
+      bottle.bottleState      // 11
     );
   }
 }

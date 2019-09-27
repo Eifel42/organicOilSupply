@@ -221,7 +221,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
      * @param _millName name of the mill.
      * @param _amountLiters the number of liters of pressed oil.
      * @param _pressDate date of the pressing.
-     * @notice emit the Pressed Event. Only millers can trigger this method.
+     * @notice emit the Pressed Event. Only a miller can trigger the method if the state is harvest (Harvested).
      */
   function press(uint _productionID, address _millID, string memory _millName, uint _amountLiters, uint _pressDate)
       public
@@ -241,12 +241,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       emit Pressed(production.productionID);
   }
 
-   /**
-     * @dev describe the bottling process of the OilProduction.
-     * @param _productionID ID of the OilProduction process.
-     * @param _bottlingDate date of bottling.
-     * @notice emit the Bottled Event. Only millers can trigger this method.
-     */
+  /**
+    * @dev describe the bottling process of the OilProduction.
+    * @param _productionID ID of the OilProduction process.
+    * @param _bottlingDate date of bottling.
+    * @notice emit the Bottled Event. Only a miller can trigger the method 
+    * if the state is press (Pressed).
+    */
   function bottling(uint _productionID, uint _bottlingDate)
       public
       onlyMill
@@ -281,21 +282,28 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       emit Bottled(production.productionID);
   }
 
-  function deliver(uint _productionID, uint _deliveryDate)
+  /**
+    * @dev describe the bottling process of the OilProduction.
+    * @param _productionID ID of the OilProduction process.
+    * @param _deliveryDate date of delivery.
+    * @notice emit the Delivered Event. Only a miller can trigger the method 
+    * if the state is bottle (Bottled).
+    */
+  function deliver(uint _productionID, address _shopID, uint _deliveryDate)
       public
       onlyMill
       bottled(_productionID)
    {
       OilProduction storage production = oilProductions[_productionID];
-      production.ownerID = msg.sender;
-      production.shopID = msg.sender;
+      production.ownerID = _shopID;
+      production.shopID = _shopID;
       production.deliveryDate = _deliveryDate;
       production.productionState = State.Delivered;
 
       for (uint i=0; i < production.bottleCount; i++) {
           Bottle storage bottle = bottles[production.bottleIDs[i]];
-          bottle.ownerID = msg.sender;
-          bottle.shopID = msg.sender;
+          bottle.ownerID = _shopID;
+          bottle.shopID = _shopID;
           bottle.bottleState = State.Delivered;
       }
 
@@ -309,15 +317,11 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       delivered(_productionID)
   {
     OilProduction storage production = oilProductions[_productionID];
-    production.ownerID = msg.sender;
-    production.shopID = msg.sender;
     production.inShopDate = _inShopDate;
     production.productionState = State.InShop;
 
     for (uint i=0; i < production.bottleCount; i++) {
       Bottle storage bottle = bottles[production.bottleIDs[i]];
-      bottle.ownerID = msg.sender;
-      bottle.shopID = msg.sender;
       bottle.price = _price;
       bottle.bottleState = State.InShop;
     }
@@ -364,14 +368,14 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       OilProduction storage oilProduction = oilProductions[_productionID];
       return
       (
-          oilProduction.ownerID,
-          oilProduction.farmerID,
-          oilProduction.farmerName,
-          oilProduction.harvestDate,
-          oilProduction.fieldName,
-          oilProduction.fieldLatitude,
-          oilProduction.fieldLongitude,
-          oilProduction.productionState
+          oilProduction.ownerID,        // 0
+          oilProduction.farmerID,       // 1
+          oilProduction.farmerName,     // 2
+          oilProduction.harvestDate,    // 3
+          oilProduction.fieldName,      // 4
+          oilProduction.fieldLatitude,  // 5
+          oilProduction.fieldLongitude, // 6
+          oilProduction.productionState // 7
       );
   }
 
@@ -397,17 +401,17 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       OilProduction storage oilProduction = oilProductions[_productionID];
       return
       (
-          oilProduction.ownerID,
-          oilProduction.millID,
-          oilProduction.shopID,
-          oilProduction.millName,
-          oilProduction.pressDate,
-          oilProduction.amountLiters,
-          oilProduction.bottlingDate,
-          oilProduction.deliveryDate,
-          oilProduction.inShopDate,
-          oilProduction.bottleCount,     
-          oilProduction.productionState
+          oilProduction.ownerID,        // 0
+          oilProduction.millID,         // 1
+          oilProduction.shopID,         // 2
+          oilProduction.millName,       // 3
+          oilProduction.pressDate,      // 4
+          oilProduction.amountLiters,   // 5
+          oilProduction.bottlingDate,   // 6
+          oilProduction.deliveryDate,   // 7
+          oilProduction.inShopDate,     // 8
+          oilProduction.bottleCount,    // 9  
+          oilProduction.productionState // 10
       );
   }
 

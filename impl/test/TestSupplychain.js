@@ -30,14 +30,9 @@ contract('SupplyChain', function (accounts) {
   const shopTime = Date.now() + 40000;
   const sellTime = Date.now() + 50000;
 
-
-  const bottlePrice = web3.utils.toWei('1', 'ether');
-  const payment = web3.utils.toWei('2.5', 'ether');
-
-  /* let productID = sku + upc;
-
-   */
-  const emptyAddress = '0x00000000000000000000000000000000000000';
+  // payment
+  const bottlePrice = web3.utils.toWei('1.99', 'ether');
+  const payment = web3.utils.toWei('3', 'ether');
 
   console.log("ganache-cli accounts used here...");
   console.log("Contract Owner: accounts[0] ", orginOwnerID);

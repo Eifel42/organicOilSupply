@@ -12,7 +12,7 @@ This example shows the possibilities of tracking of products like wine, beer, br
 
 # WEB UI (React Drizzle)
 
-[Documentation of the Web UI](client/README.md)
+[Documentation of the Web UI](impl/client/README.md)
 
 # Supply chain & data auditing
 

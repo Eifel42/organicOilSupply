@@ -8,11 +8,11 @@ The organic farmer Bob produces exclusive rapeseed oils. Bob presses the oils in
 
 This example shows the possibilities of tracking of products like wine, beer, bread, or products in chemical or pharmaceutical industries. It tracks the products from the field to the customer. The example has one primary essence and two production steps.
 
-![Organic Oil story in UML](uml/uml.md)
+[Organic Oil story in UML](uml/uml.md)
 
 # WEB UI (React Drizzle)
 
-![Documentation of the Web UI](client/README.md)
+[Documentation of the Web UI](client/README.md)
 
 # Supply chain & data auditing
 

@@ -59,7 +59,7 @@ function BusinessProcess(props) {
                         <img src={imgField} width="100%" height="50%" alt={"Gold Field"}/>
                         <h1>Organic Oil Manufacturer</h1>
                         <p>Organic oil manufacturer Ethereum Dapp example. It illustrates the supply chain from the farmer to the customer
-                        &nbsp;<a href="https://github.com/Eifel42/organicOilSupply/blob/master/uml/uml.md">Businnes Concept</a>.</p>
+                        &nbsp;<a href="https://github.com/Eifel42/organicOilSupply/blob/master/uml/uml.md">Business Concept</a>.</p>
                     </Jumbotron>
                 </Col>
             </Row>

@@ -2,11 +2,10 @@ import React, {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 
 function Harvest(props) {
 
-  const {drizzle, addAlert, supplyChain} = props;
+  const {drizzle, addAlert} = props;
 
   const [farmerID, setFarmerID] = useState("");
   const [oilProductionID, setOilProductionID] = useState("1");
@@ -15,7 +14,6 @@ function Harvest(props) {
   const [fieldName, setFieldName] = useState("slate west field");
   const [latitude, setLatitude] = useState("50.223206");
   const [longitude, setLongitude] = useState("7.084896");
-  const state = drizzle.store.getState();
 
 
   // Set the Address Fields to default addresses
@@ -29,54 +27,37 @@ function Harvest(props) {
 
   // An authority can officially endorse the certification scheme as approved
   const harvest = async () => {
-    addAlert("drinn",'success');
+    addAlert("drinn", 'success');
 
-    if (state.drizzleStatus.initialized) {
+    const stackID = drizzle.contracts.SupplyChain.methods["harvest"].cacheSend(
+      oilProductionID,
+      farmerID,
+      farmerName,
+      harvestDate,
+      fieldName,
+      latitude,
+      longitude,
+      {from: farmerID});
 
-      try {
-        const stackID = drizzle.contracts.SupplyChain.methods["harvest"].cacheSend(
-          oilProductionID,
-          farmerID,
-          farmerName,
-          harvestDate,
-          fieldName,
-          latitude,
-          longitude,
-          {from: farmerID});
+    const {transactions, transactionStack} = drizzle.drizzleState;
 
-        addAlert(stackID,'success');
-          const txHash = await state.transactionStack[stackID];
-        addAlert(JSON.stringify(state.transactionStack),'success');
-          if (txHash) {
-            const status = state.transactions[txHash].status;
-            addAlert(`harvest OilProductionID ${oilProductionID} - Tx Hash : ${status}`, 'success');
-          }
+    // get the transaction hash using our saved `stackId`
+    const txHash = transactionStack[stackID];
+    if (!txHash) return;
+    addAlert(`harvest OilProductionID ${oilProductionID} - Transaction : ${transactions[txHash]} ${transactions[txHash].status}`, 'success');
 
-      } catch (err) {
-        addAlert(err.message, 'danger')
-      }
-    } else {
-      addAlert("no action",'danger');
-    }
   };
 
   const addFarm = async () => {
-    if (supplyChain) {
-      const addFarmer = supplyChain.methods["addFarmer"];
-      try {
-        const stackID = await addFarmer.cacheSend(
-          farmerID, {from: farmerID});
 
-        const txHash = state.transactionStack[stackID];
-        if (txHash) {
-          const status = state.transactions[txHash].status;
-          addAlert(`Add FarmerRole ${stackID} - Tx Hash : ${status}`, 'success');
-        }
+    const stackID = drizzle.methods["addFarmer"].cacheSend(farmerID, {from: farmerID});
+    const {transactions, transactionStack} = this.props.drizzleState;
 
-      } catch (err) {
-        addAlert(err.message, 'danger')
-      }
-    }
+    // get the transaction hash using our saved `stackId`
+    const txHash = transactionStack[stackID];
+    if (!txHash) return;
+    addAlert(`harvest OilProductionID ${oilProductionID} - Transaction : ${transactions[txHash]} ${transactions[txHash].status}`, 'success');
+
   };
 
 

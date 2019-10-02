@@ -19,8 +19,6 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   uint  sku;
   // Oil Production Sequence
   uint oilProductionID;
-  // Fields for production
-  uint fieldIDs;
   // Define
   uint constant factorProductID = 1000;
 
@@ -245,7 +243,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @dev describe the bottling process of the OilProduction.
     * @param _productionID ID of the OilProduction process.
     * @param _bottlingDate date of bottling.
-    * @notice emit the Bottled Event. Only a miller can trigger the method 
+    * @notice emit the Bottled Event. Only a miller can trigger the method
     * if the state is press (Pressed).
     */
   function bottling(uint _productionID, uint _bottlingDate)
@@ -286,7 +284,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @dev describe the bottling process of the OilProduction.
     * @param _productionID ID of the OilProduction process.
     * @param _deliveryDate date of delivery.
-    * @notice emit the Delivered Event. Only a miller can trigger the method 
+    * @notice emit the Delivered Event. Only a miller can trigger the method
     * if the state is bottle (Bottled).
     */
   function deliver(uint _productionID, address _shopID, uint _deliveryDate)
@@ -315,7 +313,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @param _productionID ID of the OilProduction process.
     * @param _inShopDate date of get delivery.
     * @param _price price of the bottle.
-    * @notice emit the InShop Event. Only a shop can trigger the method 
+    * @notice emit the InShop Event. Only a shop can trigger the method
     * if the state is deliver (Delivered).
     */
   function getDelivery(uint _productionID, uint _inShopDate, uint _price)
@@ -332,7 +330,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       bottle.price = _price;
       bottle.inShopDate = _inShopDate;
       bottle.bottleState = State.InShop;
-    } 
+    }
 
     emit InShop(production.productionID);
   }
@@ -342,7 +340,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @param _upc Universal Product Code, identifier to fetch a bottle in the supply chain.
     * @param _customerID address of the customer.
     * @param _sellDate price of the bottle.
-    * @notice emit the Sold Event. Only a customer can trigger the method 
+    * @notice emit the Sold Event. Only a customer can trigger the method
     * if the state is in shop (InShop) and the customer pay enough.
    */
   function buyBottle(uint _upc, address _customerID, uint _sellDate)
@@ -410,7 +408,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       uint,
       uint,
       uint,
-      uint,  
+      uint,
       uint,
       State
   )
@@ -427,7 +425,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
           oilProduction.bottlingDate,   // 6
           oilProduction.deliveryDate,   // 7
           oilProduction.inShopDate,     // 8
-          oilProduction.bottleCount,    // 9  
+          oilProduction.bottleCount,    // 9
           oilProduction.productionState // 10
       );
   }
@@ -436,7 +434,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   /**
     * @dev fetch a bottle.
     * @param _upc Universal Product Code, identifier to fetch a bottle in the supply chain.
-    */  
+    */
   function fetchBottle(uint _upc) public view returns
   (
       uint,

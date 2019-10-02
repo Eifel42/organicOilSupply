@@ -3,12 +3,13 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+
 /**
  * @return {boolean}
  */
 function FetchFarm(props) {
 
-  const {drizzle, addAlert, supplyChain} = props;
+  const {drizzle, addAlert} = props;
 
   const [accountID, setAccountID] = useState("1");
   const [oilProductionID, setOilProductionID] = useState("1");
@@ -25,16 +26,16 @@ function FetchFarm(props) {
 
   // An authority can officially endorse the certification scheme as approved
   const fetchFarm = async () => {
-    if (supplyChain) {
-      try {
-          const result = await supplyChain.methods.fetchOilProductionFarm(oilProductionID).call({from: accountID});
-          setFarmData(JSON.stringify(result));
 
-          addAlert("Read " + result[2], 'success')
-       } catch (err) {
-          addAlert(err.message, 'danger')
-      }
+    try {
+      const result = await drizzle.contracts.SupplyChain.methods.fetchOilProductionFarm(oilProductionID).call({from: accountID});
+      setFarmData(JSON.stringify(result));
+
+      addAlert("Read " + result[2], 'success')
+    } catch (err) {
+      addAlert(err.message, 'danger')
     }
+    
   };
 
 

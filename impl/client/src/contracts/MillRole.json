@@ -2485,9 +2485,142 @@
     "name": "solc",
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        }
+      },
+      "links": {},
+      "address": "0xaE45C7Ae17d49cb7725ca64F197d4DFe27A7FDfA",
+      "transactionHash": "0x125bc358efcaaa4520066659da2b63af08c72bb9acf5b502c427c255b1eb4bb8"
+    },
+    "1569867557216": {
+      "events": {
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        }
+      },
+      "links": {},
+      "address": "0x718d40163d354c02531D1A7233e16DFce5c39A3d",
+      "transactionHash": "0xf646656e213548a2ab8cab1ca51cdd89a923f0c9a75fa13e97036824c4d02c7b"
+    },
+    "1569924555151": {
+      "events": {
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        }
+      },
+      "links": {},
+      "address": "0x21Af8baB7C8d7A98626e87F740A05130A756b7e3",
+      "transactionHash": "0xe6f6b48a26688a0b9b625dad8ee603ec9a68d798e7462f76e086dcbd9e9b534d"
+    },
+    "1569959089164": {
+      "events": {
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        }
+      },
+      "links": {},
+      "address": "0x165E1Db466dD6e917FCac529179b927e93CC5E5e",
+      "transactionHash": "0xa309332685396554ac91a76d0e5efbfbf07ff2ddd3c03ca9836debe0d71f8c3e"
+    }
+  },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-09-28T15:08:01.190Z",
+  "updatedAt": "2019-10-01T23:05:53.771Z",
   "devdoc": {
     "methods": {}
   },

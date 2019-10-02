@@ -1,7 +1,8 @@
 import React from 'react';
+
 import './App.css';
 import { DrizzleContext } from "drizzle-react";
-import Overview from "./Overview";
+import BusinessProcess from "./BusinessProcess";
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         <DrizzleContext.Consumer>
             {({drizzle}) =>
 
-                <Overview drizzle={drizzle} />
+                <BusinessProcess drizzle={drizzle} />
             }
         </DrizzleContext.Consumer>
     );

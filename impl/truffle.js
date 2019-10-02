@@ -8,6 +8,7 @@ const infuraKey = "5f5c545f077543beaa661866ef8c435d";
 
 module.exports = {
 
+  contracts_build_directory: "./client/src/contracts",
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -20,6 +21,8 @@ module.exports = {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 7545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
+      gas: 4500000,
+      gasPrice: 10000000000
     },
     rinkeby: {
       provider: () => new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/5f5c545f077543beaa661866ef8c435d'),

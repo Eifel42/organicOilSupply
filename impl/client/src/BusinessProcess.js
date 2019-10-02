@@ -7,18 +7,24 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Alert from 'react-bootstrap/Alert'
 import md5 from 'md5';
+import imgField from './img/field.png';
 import Accounts from "./Accounts";
+import Harvest from "./Harvest";
+import PressOil from "./PressOil";
+import Bottling from "./Bottling";
+import FetchFarm from "./FetchFarm";
 
-
-function Overview(props) {
+function BusinessProcess(props) {
 
     // EVM accounts for the Actors
     const [accounts, setAccounts] = useState([]);
 
+     // Tab selection default
+    const [key, setKey] = useState('farm');
+
     const [alerts, setAlerts] = useState([]);
 
     const {drizzle, drizzleState} = props;
-
 
     // When accounts are available, map them as defaults to actors
     useEffect(() => {
@@ -45,21 +51,15 @@ function Overview(props) {
         }
     };
 
-
     return (
         <Container>
             <Row>
                 <Col>
                     <Jumbotron>
-                        <h1>World Certifier</h1>
-                        <p>
-                            This DAPP is for a decentralized approach for certifcation schemes, issuance
-                            and verification
-                        </p>
-                        <p>
-                            Any party can become a Certifier and assign a suitable Authority
-                            that can endorse authority of certification
-                        </p>
+                        <img src={imgField} width="100%" height="50%" alt={"Gold Field"}/>
+                        <h1>Organic Oil Manufacturer</h1>
+                        <p>Organic oil manufacturer Ethereum Dapp example. It illustrates the supply chain from the farmer to the customer
+                        &nbsp;<a href="https://github.com/Eifel42/organicOilSupply/blob/master/uml/uml.md">Businnes Concept</a>.</p>
                     </Jumbotron>
                 </Col>
             </Row>
@@ -67,9 +67,30 @@ function Overview(props) {
 
             <Row>
                 <Col>
+                  <hr/>
+                  <Tabs activeKey={key} onSelect={key => setKey(key)}>
+                    <Tab eventKey="accounts" title="Accounts">
+                      <Accounts addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                drizzleState={drizzleState} />
+                    </Tab>
+                    <Tab eventKey="harvest" title="Harvest">
+                      <Harvest addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                drizzleState={drizzleState}/>
+                    </Tab>
+                    <Tab eventKey="pressOil" title="PressOil">
+                      <PressOil addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                               drizzleState={drizzleState}/>
+                    </Tab>
+                    <Tab eventKey="bottling" title="Bottling">
+                      <Bottling addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                drizzleState={drizzleState}/>
+                    </Tab>
+                    <Tab eventKey="fetchFarm" title="Farm Data">
+                      <FetchFarm addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                drizzleState={drizzleState} />
+                    </Tab>
 
-
-
+                  </Tabs>
                 </Col>
             </Row>
 
@@ -95,4 +116,4 @@ function Overview(props) {
 
 }
 
-export default Overview;
+export default BusinessProcess;

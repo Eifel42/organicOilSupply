@@ -2529,9 +2529,142 @@
     "name": "solc",
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerAdded",
+          "type": "event",
+          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
+        },
+        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerRemoved",
+          "type": "event",
+          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
+        }
+      },
+      "links": {},
+      "address": "0x7B588E60C391a58ab8bba6a70Bb5fc2513fA805D",
+      "transactionHash": "0xeb2aae6495e51b7932fc912fdde478ebfca339818ddde1c8c8717e5547f306ae"
+    },
+    "1569867557216": {
+      "events": {
+        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerAdded",
+          "type": "event",
+          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
+        },
+        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerRemoved",
+          "type": "event",
+          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
+        }
+      },
+      "links": {},
+      "address": "0x1FCE09D1821648b9A58ee8D53e7863Bd8919F151",
+      "transactionHash": "0x7dbd0178f36c8f6b5283eaa1dfa0b11166e68afaf5f5b7256340f8ff2028539e"
+    },
+    "1569924555151": {
+      "events": {
+        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerAdded",
+          "type": "event",
+          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
+        },
+        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerRemoved",
+          "type": "event",
+          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
+        }
+      },
+      "links": {},
+      "address": "0x9Da5c1D85c8A795d0Cb0613fEE51b2e74820fb79",
+      "transactionHash": "0x5711f67d02fcbab762738476fde7dd9db973875f490df5a8c6c31244894ddbfa"
+    },
+    "1569959089164": {
+      "events": {
+        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerAdded",
+          "type": "event",
+          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
+        },
+        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CostumerRemoved",
+          "type": "event",
+          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
+        }
+      },
+      "links": {},
+      "address": "0xC0914b73fAC739154d382Dc164596899efde4C31",
+      "transactionHash": "0x7f0b4d34029886150f10dab0152f846b93bd6728ac963268c0e4e730a8af53d0"
+    }
+  },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-09-28T15:08:01.188Z",
+  "updatedAt": "2019-10-01T23:05:53.779Z",
   "devdoc": {
     "methods": {}
   },

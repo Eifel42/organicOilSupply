@@ -14,8 +14,8 @@ contract('SupplyChain', function (accounts) {
   const customerID = accounts[4];
   const unkownID = accounts[9];
 
-  // Farm Test Data
-  const farmerName = "Eifel Gold Oil Farm";
+  // Harvest Test Data
+  const farmerName = "Eifel Gold Oil Harvest";
   const fieldName = "Goldfield";
   const latitude = "-38.239770";
   const longitude = "144.341490";
@@ -41,7 +41,7 @@ contract('SupplyChain', function (accounts) {
   console.log("Shop: accounts[3] ", shopID);
   console.log("Costumer: accounts[4] ", customerID);
   console.log("Unkown: accounts[9] ", unkownID);
-
+/*
   // 1st Test
   it("Testing smart contract function harvest that allows a farmer to harvest the seed", async () => {
     const callerID = orginOwnerID;
@@ -279,14 +279,14 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
   });
-
-
+*/
   // 7th Test
   it("Testing smart contract function fetchOilProductionFarm", async () => {
     const callerID = orginOwnerID;
     const supplyChain = await SupplyChain.deployed({from: callerID});
 
     const result = await supplyChain.fetchOilProductionFarm.call(productionID, {from: callerID});
+    console.log(result);
 
     assert.equal(result[0], shopID, 'Error: Missing or Invalid ownerID, Shop is Owner of the OilProduction');
     assert.equal(result[1], farmerID, 'Error: Missing or Invalid farmerID');
@@ -298,8 +298,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(result[7], 4, 'Error: Invalid OilProduction State');
 
   });
-
-
+/*
   // 8th Test
   it("Testing smart contract function fetchOilProduction", async () => {
     const callerID = orginOwnerID;
@@ -346,6 +345,6 @@ contract('SupplyChain', function (accounts) {
     assert.equal(bottleResult[11], 5, 'Error: Invalid item State Bottle');
 
   });
-
+*/
 });
 

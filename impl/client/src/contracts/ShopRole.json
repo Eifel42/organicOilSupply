@@ -2470,7 +2470,7 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
-    "4": {
+    "1570222629174": {
       "events": {
         "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d": {
           "anonymous": false,
@@ -2500,45 +2500,12 @@
         }
       },
       "links": {},
-      "address": "0x0474138F09DF54a0291a7D3a01B0F5e390bC88A6",
-      "transactionHash": "0x856a19227061ee588aaee846a07df755695b75aff437dbe84f0ce14ea7f2d009"
-    },
-    "5777": {
-      "events": {
-        "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "ShopAdded",
-          "type": "event",
-          "signature": "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d"
-        },
-        "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "ShopRemoved",
-          "type": "event",
-          "signature": "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9"
-        }
-      },
-      "links": {},
-      "address": "0xA87dDd543400d59084D86D72df6B5EbE5ECA2b50",
-      "transactionHash": "0x65ee4b6bdf6015895e575c4b96c4646ec12d3f029902553494d41cd4f881db66"
+      "address": "0x79051A2faFcC216A55d3897474012145d158F170",
+      "transactionHash": "0x1c8e30903e61095d215cbc22d8083a5c380f5e597529a9c106f4a2ee5d3bbd30"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T18:59:01.303Z",
+  "updatedAt": "2019-10-04T20:57:34.389Z",
   "devdoc": {
     "methods": {}
   },

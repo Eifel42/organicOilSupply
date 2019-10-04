@@ -36,7 +36,7 @@ function FetchFarm(props) {
   const fetchFarm = async () => {
 
     supplyChain.methods.fetchOilProductionFarm(oilProductionID).call(
-      {from: accountID, gas: 3000000}).then(function (result) {
+      {from: accountID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
         addAlert(`fetchOilProductionFarm ${oilProductionID}`, 'success');
 
         const harvestDate = ProcessUtil.convertDateToString(result[3]);

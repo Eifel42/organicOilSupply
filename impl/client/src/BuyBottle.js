@@ -30,7 +30,7 @@ function Delivery(props) {
   const buyBottle = async () => {
     const sellTime = ProcessUtil.parseDate(sellDate);
     supplyChain.methods.buyBottle(
-      upc, customerID, sellTime).send({from: ownerID, gas: 6000000, value: paymentAmount}).then(function (result) {
+      upc, customerID, sellTime).send({from: ownerID, gas: ProcessUtil.gasPerTransaction(), value: paymentAmount}).then(function (result) {
       addAlert(`buy bottle ${upc}  Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
       addAlert(err.message, 'danger');
@@ -39,7 +39,7 @@ function Delivery(props) {
 
   const addCustomer = async () => {
     supplyChain.methods.addCustomer(
-      customerID).send({from: ownerID, gas: 3000000}).then(function(result) {
+      customerID).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function(result) {
       addAlert(`addCustomer ${customerID} - Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function(err) {
       addAlert(err.message,'danger');

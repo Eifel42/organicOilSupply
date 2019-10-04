@@ -35,7 +35,7 @@ function PressOil(props) {
       millID,
       millName,
       amountliters,
-      pressTime).send({from: millID, gas: 3000000}).then(function (result) {
+      pressTime).send({from: millID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
          addAlert(`pressOIl OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
       }).catch(function (err) {
          addAlert(err.message, 'danger');
@@ -43,7 +43,7 @@ function PressOil(props) {
   };
 
   const addMill = async () => {
-    supplyChain.methods.addMill(millID).send({from: ownerID, gas: 3000000}).then(function (result) {
+    supplyChain.methods.addMill(millID).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
         addAlert(`addMill ${millID} - Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
         addAlert(err.message, 'danger');

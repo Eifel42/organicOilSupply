@@ -38,7 +38,7 @@ function Harvest(props) {
       harvestTime,
       fieldName,
       latitude,
-      longitude).send({from: ownerID, gas: 3000000}).then(function(result) {
+      longitude).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function(result) {
           addAlert(`harvest OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
       }).catch(function(err) {
           addAlert(err.message,'danger');
@@ -50,7 +50,7 @@ function Harvest(props) {
   const addFarm = async () => {
 
     supplyChain.methods.addFarmer(
-      farmerID).send({from: ownerID, gas: 3000000}).then(function(result) {
+      farmerID).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function(result) {
       addAlert(`addFarmer ${farmerID} - Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function(err) {
       addAlert(err.message,'danger');

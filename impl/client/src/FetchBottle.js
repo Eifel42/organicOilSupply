@@ -41,7 +41,7 @@ function FetchFarm(props) {
   const fetchFarm = async () => {
 
     supplyChain.methods.fetchBottle(upc).call(
-      {from: accountID, gas: 3000000}).then(function (result) {
+      {from: accountID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
         addAlert(`fetchBottle ${upc}`, 'success');
 
         const bottleDate = ProcessUtil.convertDateToString(result[6]);

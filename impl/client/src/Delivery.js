@@ -33,7 +33,7 @@ function Delivery(props) {
     supplyChain.methods.deliver(
       oilProductionID,
       shopID,
-      deliveryTime, millID).send({from: ownerID, gas: 6000000}).then(function (result) {
+      deliveryTime, millID).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
       addAlert(`deliver OilProductionID ${oilProductionID} to shop- Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
       addAlert(err.message, 'danger');

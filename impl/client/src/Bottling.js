@@ -30,7 +30,7 @@ function Bottling(props) {
     const bottlingTime = ProcessUtil.parseDate(bottlingDate);
     supplyChain.methods.bottling(
       oilProductionID,
-      bottlingTime, millID).send({from: ownerID, gas: 6000000}).then(function (result) {
+      bottlingTime, millID).send({from: ownerID, gas: ProcessUtil.gasPerTransaction()}).then(function (result) {
       addAlert(`bottling OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
       addAlert(err.message, 'danger');

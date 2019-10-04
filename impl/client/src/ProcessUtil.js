@@ -44,5 +44,9 @@
     return Date.now();
   }
 
+  function gasPerTransaction() {
+    return 48000000;
+  }
 
-  export default {stateText, convertDateToString, parseDate};
+
+  export default {stateText, convertDateToString, parseDate, gasPerTransaction};

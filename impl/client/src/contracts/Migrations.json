@@ -195,7 +195,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1738,
+                        "referencedDeclaration": 1744,
                         "src": "149:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -279,7 +279,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1738,
+                        "referencedDeclaration": 1744,
                         "src": "200:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -841,7 +841,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1738,
+                        "referencedDeclaration": 1744,
                         "src": "149:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -925,7 +925,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1738,
+                        "referencedDeclaration": 1744,
                         "src": "200:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1371,60 +1371,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xfBC1cc8af6d42a12DcE51514c02F4A8B88cFfE75",
-      "transactionHash": "0xa3c5d08f65782dd461cc1f939a9ef87a93d2580238a28db46972c60d61d1bd43"
-    },
-    "1569867557216": {
-      "events": {},
-      "links": {},
-      "address": "0x3563BB766556a654F68c2e9f6a77a24670245B78",
-      "transactionHash": "0xbafbc610b4a80984a0164936b16fee4247f490de163cbf6d109afc1d14034710"
-    },
-    "1569924555151": {
-      "events": {},
-      "links": {},
-      "address": "0x3852850A70463b9FDA6b130D10e16B8C0EB25834",
-      "transactionHash": "0x2bed010f1894a27924fdbf030a832d3d80df80ed4fdcfd21c014e585a17afdb5"
-    },
-    "1569959089164": {
-      "events": {},
-      "links": {},
-      "address": "0xE4fcB2984bF86Eb4e616E8d244D8dC481Db19B0C",
-      "transactionHash": "0x19fb1f50735368aaca42636b69143ad4fae46c069f3835d70f9591fb0e894948"
-    },
-    "1570061384817": {
-      "events": {},
-      "links": {},
-      "address": "0x74a4cAC13937FBaA515B691bA4526dbB169347F6",
-      "transactionHash": "0xa2b467f80f2ead166010f3905e3073d8040d9aa620e6e926d14e469f98cc90eb"
-    },
-    "1570064247537": {
-      "events": {},
-      "links": {},
-      "address": "0x3c4A0d5bF23D8090504Ad46161CD040536628994",
-      "transactionHash": "0x6f015f013c00bce8b9df1053e1e1f659008351483df0e376916e4e58c637098c"
-    },
-    "1570118569429": {
-      "events": {},
-      "links": {},
-      "address": "0xF866cc9b00d18a68FCA37dEDaD88aC9531AA7dC2",
-      "transactionHash": "0x87c3cf112cc41cb24363ce2e010a0e5001fbb80944a7a0bea5b8002055252fc2"
-    },
-    "1570143752278": {
-      "events": {},
-      "links": {},
-      "address": "0xD2080fca8cF91D519dAc523290b02573b95Da1B1",
-      "transactionHash": "0x5f07851f1ace9c73a7c106975973c7a5ee1d78c0eb6d416e9c9fb943b47b8393"
-    },
-    "1570144657960": {
-      "events": {},
-      "links": {},
-      "address": "0x79754A36E95e69b86150eA25ac580a7F531C777b",
-      "transactionHash": "0xaef2c57dff22e931bc7190a6639c2c3b71808bbdd1b95590f35bcdd05cca4cfa"
+      "address": "0x228E41D09DEbE6E77935b045dD773f2f30034eAd",
+      "transactionHash": "0xc3c7770649465d31925f1134542312422a717902ce74ed65858fdb36b84bbdc4"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T15:22:25.770Z",
+  "updatedAt": "2019-10-04T15:49:07.811Z",
   "devdoc": {
     "methods": {}
   },

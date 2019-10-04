@@ -39,7 +39,7 @@ contract('SupplyChain', function (accounts) {
   console.log("Farmer: accounts[1] ", farmerID);
   console.log("Mill: accounts[2] ", millID);
   console.log("Shop: accounts[3] ", shopID);
-  console.log("Costumer: accounts[4] ", customerID);
+  console.log("Customer: accounts[4] ", customerID);
   console.log("Unkown: accounts[9] ", unkownID);
 
   // 1st Test
@@ -248,7 +248,7 @@ contract('SupplyChain', function (accounts) {
 
     const callerID = orginOwnerID;
     const supplyChain = await SupplyChain.deployed({from: callerID});
-    await supplyChain.addCostumer(customerID, {from: callerID});
+    await supplyChain.addCustomer(customerID, {from: callerID});
 
     // Declare and Initialize a variable for event
     let eventEmitted = false;

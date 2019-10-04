@@ -16,7 +16,7 @@ const options = {
   },
   contracts: [SupplyChain],
   events: {
-    SupplyChain: ["TransferOwnership","FarmerAdded","MillAdded","ShopAdded","CostumerAdded","Harvested","Pressed","Bottled","Delivered", "InShop","Sold"],
+    SupplyChain: ["TransferOwnership","FarmerAdded","MillAdded","ShopAdded","CustomerAdded","Harvested","Pressed","Bottled","Delivered", "InShop","Sold"],
   },
   polls: {
     accounts: 1500,

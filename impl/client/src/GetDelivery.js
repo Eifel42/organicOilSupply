@@ -78,7 +78,7 @@ function Delivery(props) {
           </Button>
           &nbsp;&nbsp;
           <Button variant="primary" onClick={getDelivery}>
-            Deliver
+            Get Delivery
           </Button>
         </Form.Group>
       </Form>

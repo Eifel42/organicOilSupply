@@ -1,6 +1,6 @@
 pragma solidity ^0.5.8;
 // Define a contract 'Supplychain'
-import '../access_control/CostumerRole.sol';
+import '../access_control/CustomerRole.sol';
 import '../access_control/FarmerRole.sol';
 import '../access_control/ShopRole.sol';
 import '../access_control/MillRole.sol';
@@ -11,7 +11,7 @@ import '../core/Ownable.sol';
   * @author Stefan Zils
   * @notice Organic Oil Manufacturer SupplyChain implementation for farmer to customer.
   */
-contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
+contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CustomerRole {
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   uint  upc;
@@ -80,7 +80,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       address ownerID;    // Metamask-Ethereum address of the current owner as the product moves through 8 stages
       address millID;
       address shopID;     // Metamask-Ethereum address of the Shop,
-      address costumerID; // Metamask-Ethereum address of the Consumer,
+      address customerID; // Metamask-Ethereum address of the Consumer,
 
       uint    bottleDate;
       uint    inShopDate;
@@ -350,7 +350,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   function buyBottle(uint _upc, address _customerID, uint _sellDate)
     public
     payable
-    onlyCostumer(_customerID)
+    onlyCustomer(_customerID)
     inShop(_upc)
     paidEnough(bottles[_upc].price)
     checkValue(_upc)
@@ -360,7 +360,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     bottle.bottleState = State.Sold;
     bottle.sellDate = _sellDate;
     bottle.ownerID = _customerID;
-    bottle.costumerID = _customerID;
+    bottle.customerID = _customerID;
 
     address payable shopID = address(uint160(bottle.shopID));
     shopID.transfer(bottle.price);
@@ -463,7 +463,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
       bottle.ownerID,         // 2
       bottle.millID,          // 3
       bottle.shopID,          // 4
-      bottle.costumerID,      // 5
+      bottle.customerID,      // 5
       bottle.bottleDate,      // 6
       bottle.inShopDate,      // 7
       bottle.sellDate,        // 8

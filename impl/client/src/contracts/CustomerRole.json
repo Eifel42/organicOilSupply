@@ -1,5 +1,5 @@
 {
-  "contractName": "CostumerRole",
+  "contractName": "CustomerRole",
   "abi": [
     {
       "inputs": [],
@@ -16,7 +16,7 @@
           "type": "address"
         }
       ],
-      "name": "CostumerAdded",
+      "name": "CustomerAdded",
       "type": "event"
     },
     {
@@ -28,7 +28,7 @@
           "type": "address"
         }
       ],
-      "name": "CostumerRemoved",
+      "name": "CustomerRemoved",
       "type": "event"
     },
     {
@@ -39,7 +39,7 @@
           "type": "address"
         }
       ],
-      "name": "isCostumer",
+      "name": "isCustomer",
       "outputs": [
         {
           "name": "",
@@ -58,7 +58,7 @@
           "type": "address"
         }
       ],
-      "name": "addCostumer",
+      "name": "addCustomer",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -67,24 +67,24 @@
     {
       "constant": false,
       "inputs": [],
-      "name": "renounceCostumer",
+      "name": "renounceCustomer",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addCostumer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isCostumer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceCostumer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CostumerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CostumerRemoved\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CostumerRole.sol\":\"CostumerRole\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CostumerRole.sol\":{\"keccak256\":\"0x4e3dbb440eb4eb99e7ce852128329712478bd40bd298f7053cf2886cb9aac7fa\",\"urls\":[\"bzzr://8a134b18e25929ba8d324a788c4efe720febbfb81ca2eab06b0476569e2ce013\"]},\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/Roles.sol\":{\"keccak256\":\"0x82f7748aee61e64633ae38aac252ec579d51327eafb1f72aeee3f7934222a725\",\"urls\":[\"bzzr://9336ecf9a25a866a9ce517c990c90c1d1c50cb4d5360223eee48be18f9c27490\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506100203361002560201b60201c565b6101c7565b61003d81600061008360201b61026a1790919060201c565b8073ffffffffffffffffffffffffffffffffffffffff167f37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb60405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100bd57600080fd5b6100cd828261013560201b60201c565b156100d757600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561017057600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6103ed806101d66000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806356c8bd92146100465780639e6edefc1461008a578063e4fe9159146100e6575b600080fd5b6100886004803603602081101561005c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100f0565b005b6100cc600480360360208110156100a057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100fc565b604051808215151515815260200191505060405180910390f35b6100ee610119565b005b6100f981610124565b50565b600061011282600061017e90919063ffffffff16565b9050919050565b61012233610210565b565b61013881600061026a90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb60405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156101b957600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61022481600061031690919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f360405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102a457600080fd5b6102ae828261017e565b156102b857600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141561035057600080fd5b61035a828261017e565b61036357600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a72305820d7f963dcddc8c9e740a2db2bd314d5b9da96ebc940cc25a9f12396886c00e0880029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806356c8bd92146100465780639e6edefc1461008a578063e4fe9159146100e6575b600080fd5b6100886004803603602081101561005c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100f0565b005b6100cc600480360360208110156100a057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100fc565b604051808215151515815260200191505060405180910390f35b6100ee610119565b005b6100f981610124565b50565b600061011282600061017e90919063ffffffff16565b9050919050565b61012233610210565b565b61013881600061026a90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb60405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156101b957600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b61022481600061031690919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f360405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102a457600080fd5b6102ae828261017e565b156102b857600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141561035057600080fd5b61035a828261017e565b61036357600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a72305820d7f963dcddc8c9e740a2db2bd314d5b9da96ebc940cc25a9f12396886c00e0880029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isCustomer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceCustomer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addCustomer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CustomerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CustomerRemoved\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CustomerRole.sol\":\"CustomerRole\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CustomerRole.sol\":{\"keccak256\":\"0x984870e44d233b4e477e681cdd2c9023992cdbb14588cf06ab1d0ebcf5afa08e\",\"urls\":[\"bzzr://a080bf1027f205d71da3b7be065754705b011b57e917ec135f461b7195ffdf01\"]},\"/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/Roles.sol\":{\"keccak256\":\"0x82f7748aee61e64633ae38aac252ec579d51327eafb1f72aeee3f7934222a725\",\"urls\":[\"bzzr://9336ecf9a25a866a9ce517c990c90c1d1c50cb4d5360223eee48be18f9c27490\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506100203361002560201b60201c565b6101c7565b61003d81600061008360201b6103151790919060201c565b8073ffffffffffffffffffffffffffffffffffffffff167fcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f60405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100bd57600080fd5b6100cd828261013560201b60201c565b156100d757600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561017057600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6103ed806101d66000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806328fd5e8314610046578063ac98e6db146100a2578063ad973d74146100ac575b600080fd5b6100886004803603602081101561005c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100f0565b604051808215151515815260200191505060405180910390f35b6100aa61010d565b005b6100ee600480360360208110156100c257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610118565b005b600061010682600061012490919063ffffffff16565b9050919050565b610116336101b6565b565b61012181610210565b50565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561015f57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6101ca81600061026a90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b660405160405180910390a250565b61022481600061031590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f60405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102a457600080fd5b6102ae8282610124565b6102b757600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141561034f57600080fd5b6103598282610124565b1561036357600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a7230582055d8f2b9189762689cbf9f1fd6b3eb01fff4a2b6d9d6186da54161a6bca5310e0029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806328fd5e8314610046578063ac98e6db146100a2578063ad973d74146100ac575b600080fd5b6100886004803603602081101561005c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100f0565b604051808215151515815260200191505060405180910390f35b6100aa61010d565b005b6100ee600480360360208110156100c257600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610118565b005b600061010682600061012490919063ffffffff16565b9050919050565b610116336101b6565b565b61012181610210565b50565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141561015f57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6101ca81600061026a90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b660405160405180910390a250565b61022481600061031590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f60405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102a457600080fd5b6102ae8282610124565b6102b757600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141561034f57600080fd5b6103598282610124565b1561036357600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a7230582055d8f2b9189762689cbf9f1fd6b3eb01fff4a2b6d9d6186da54161a6bca5310e0029",
   "sourceMap": "155:948:1:-;;;354:60;8:9:-1;5:2;;;30:1;27;20:12;5:2;354:60:1;383:24;396:10;383:12;;;:24;;:::i;:::-;155:948;;847:120;903:22;917:7;903:9;:13;;;;;;:22;;;;:::i;:::-;952:7;938:22;;;;;;;;;;;;847:120;:::o;243:167:4:-;334:1;315:21;;:7;:21;;;;307:30;;;;;;352:18;356:4;362:7;352:3;;;:18;;:::i;:::-;351:19;343:28;;;;;;401:4;378;:11;;:20;390:7;378:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;243:167;;:::o;724:166::-;808:4;849:1;830:21;;:7;:21;;;;822:30;;;;;;865:4;:11;;:20;877:7;865:20;;;;;;;;;;;;;;;;;;;;;;;;;858:27;;724:166;;;;:::o;155:948:1:-;;;;;;;",
-  "deployedSourceMap": "155:948:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;155:948:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;677:81;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;677:81:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;563:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;563:108:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;764:77;;;:::i;:::-;;677:81;730:21;743:7;730:12;:21::i;:::-;677:81;:::o;563:108::-;621:4;642:22;656:7;642:9;:13;;:22;;;;:::i;:::-;635:29;;563:108;;;:::o;764:77::-;807:27;823:10;807:15;:27::i;:::-;764:77::o;847:120::-;903:22;917:7;903:9;:13;;:22;;;;:::i;:::-;952:7;938:22;;;;;;;;;;;;847:120;:::o;724:166:4:-;808:4;849:1;830:21;;:7;:21;;;;822:30;;;;;;865:4;:11;;:20;877:7;865:20;;;;;;;;;;;;;;;;;;;;;;;;;858:27;;724:166;;;;:::o;973:128:1:-;1032:25;1049:7;1032:9;:16;;:25;;;;:::i;:::-;1086:7;1070:24;;;;;;;;;;;;973:128;:::o;243:167:4:-;334:1;315:21;;:7;:21;;;;307:30;;;;;;352:18;356:4;362:7;352:3;:18::i;:::-;351:19;343:28;;;;;;401:4;378;:11;;:20;390:7;378:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;243:167;;:::o;476:170::-;570:1;551:21;;:7;:21;;;;543:30;;;;;;587:18;591:4;597:7;587:3;:18::i;:::-;579:27;;;;;;636:5;613:4;:11;;:20;625:7;613:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;476:170;;:::o",
-  "source": "pragma solidity ^0.5.8;\n\n// Import the library 'Roles'\nimport \"./Roles.sol\";\n\n// Define a contract 'CostumerRole' to manage this role - add, remove, check\ncontract CostumerRole {\n    using Roles for Roles.Role;\n\n    event CostumerAdded(address indexed account);\n    event CostumerRemoved(address indexed account);\n\n    Roles.Role private costumers;\n\n    constructor() public {\n      _addCostumer(msg.sender);\n    }\n\n    modifier onlyCostumer(address costumerID) {\n      require(\n        isCostumer(costumerID), 'Only a Costumer can do this');\n      _;\n    }\n\n    function isCostumer(address account) public view returns (bool) {\n      return costumers.has(account);\n    }\n\n    function addCostumer(address account) public {\n      _addCostumer(account);\n    }\n\n    function renounceCostumer() public {\n      _removeCostumer(msg.sender);\n    }\n\n    function _addCostumer(address account) internal {\n      costumers.add(account);\n      emit CostumerAdded(account);\n    }\n\n    function _removeCostumer(address account) internal {\n      costumers.remove(account);\n      emit CostumerRemoved(account);\n    }\n}\n",
-  "sourcePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CostumerRole.sol",
+  "deployedSourceMap": "155:948:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;155:948:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;563:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;563:108:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;764:77;;;:::i;:::-;;677:81;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;677:81:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;563:108;621:4;642:22;656:7;642:9;:13;;:22;;;;:::i;:::-;635:29;;563:108;;;:::o;764:77::-;807:27;823:10;807:15;:27::i;:::-;764:77::o;677:81::-;730:21;743:7;730:12;:21::i;:::-;677:81;:::o;724:166:4:-;808:4;849:1;830:21;;:7;:21;;;;822:30;;;;;;865:4;:11;;:20;877:7;865:20;;;;;;;;;;;;;;;;;;;;;;;;;858:27;;724:166;;;;:::o;973:128:1:-;1032:25;1049:7;1032:9;:16;;:25;;;;:::i;:::-;1086:7;1070:24;;;;;;;;;;;;973:128;:::o;847:120::-;903:22;917:7;903:9;:13;;:22;;;;:::i;:::-;952:7;938:22;;;;;;;;;;;;847:120;:::o;476:170:4:-;570:1;551:21;;:7;:21;;;;543:30;;;;;;587:18;591:4;597:7;587:3;:18::i;:::-;579:27;;;;;;636:5;613:4;:11;;:20;625:7;613:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;476:170;;:::o;243:167::-;334:1;315:21;;:7;:21;;;;307:30;;;;;;352:18;356:4;362:7;352:3;:18::i;:::-;351:19;343:28;;;;;;401:4;378;:11;;:20;390:7;378:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;243:167;;:::o",
+  "source": "pragma solidity ^0.5.8;\n\n// Import the library 'Roles'\nimport \"./Roles.sol\";\n\n// Define a contract 'CustomerRole' to manage this role - add, remove, check\ncontract CustomerRole {\n    using Roles for Roles.Role;\n\n    event CustomerAdded(address indexed account);\n    event CustomerRemoved(address indexed account);\n\n    Roles.Role private Customers;\n\n    constructor() public {\n      _addCustomer(msg.sender);\n    }\n\n    modifier onlyCustomer(address CustomerID) {\n      require(\n        isCustomer(CustomerID), 'Only a Customer can do this');\n      _;\n    }\n\n    function isCustomer(address account) public view returns (bool) {\n      return Customers.has(account);\n    }\n\n    function addCustomer(address account) public {\n      _addCustomer(account);\n    }\n\n    function renounceCustomer() public {\n      _removeCustomer(msg.sender);\n    }\n\n    function _addCustomer(address account) internal {\n      Customers.add(account);\n      emit CustomerAdded(account);\n    }\n\n    function _removeCustomer(address account) internal {\n      Customers.remove(account);\n      emit CustomerRemoved(account);\n    }\n}\n",
+  "sourcePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CustomerRole.sol",
   "ast": {
-    "absolutePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CostumerRole.sol",
+    "absolutePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CustomerRole.sol",
     "exportedSymbols": {
-      "CostumerRole": [
+      "CustomerRole": [
         159
       ]
     },
@@ -123,7 +123,7 @@
         "linearizedBaseContracts": [
           159
         ],
-        "name": "CostumerRole",
+        "name": "CustomerRole",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
@@ -159,7 +159,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 66,
-            "name": "CostumerAdded",
+            "name": "CustomerAdded",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 65,
@@ -202,7 +202,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 70,
-            "name": "CostumerRemoved",
+            "name": "CustomerRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 69,
@@ -244,7 +244,7 @@
           {
             "constant": false,
             "id": 72,
-            "name": "costumers",
+            "name": "Customers",
             "nodeType": "VariableDeclaration",
             "scope": 159,
             "src": "319:28:1",
@@ -317,7 +317,7 @@
                         }
                       ],
                       "id": 75,
-                      "name": "_addCostumer",
+                      "name": "_addCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 142,
@@ -388,7 +388,7 @@
                           {
                             "argumentTypes": null,
                             "id": 87,
-                            "name": "costumerID",
+                            "name": "CustomerID",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 83,
@@ -407,7 +407,7 @@
                             }
                           ],
                           "id": 86,
-                          "name": "isCostumer",
+                          "name": "isCustomer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 107,
@@ -433,7 +433,7 @@
                       },
                       {
                         "argumentTypes": null,
-                        "hexValue": "4f6e6c79206120436f7374756d65722063616e20646f2074686973",
+                        "hexValue": "4f6e6c79206120437573746f6d65722063616e20646f2074686973",
                         "id": 89,
                         "isConstant": false,
                         "isLValue": false,
@@ -444,10 +444,10 @@
                         "src": "511:29:1",
                         "subdenomination": null,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_d85700200151ff9322b8bc8498c9c68df841b350607ef14b6eb1889ab947d6b6",
-                          "typeString": "literal_string \"Only a Costumer can do this\""
+                          "typeIdentifier": "t_stringliteral_55c5367edd0af503cf578cc27520f282ceada115bb20d09a6c33048b3bbf80df",
+                          "typeString": "literal_string \"Only a Customer can do this\""
                         },
-                        "value": "Only a Costumer can do this"
+                        "value": "Only a Customer can do this"
                       }
                     ],
                     "expression": {
@@ -457,8 +457,8 @@
                           "typeString": "bool"
                         },
                         {
-                          "typeIdentifier": "t_stringliteral_d85700200151ff9322b8bc8498c9c68df841b350607ef14b6eb1889ab947d6b6",
-                          "typeString": "literal_string \"Only a Costumer can do this\""
+                          "typeIdentifier": "t_stringliteral_55c5367edd0af503cf578cc27520f282ceada115bb20d09a6c33048b3bbf80df",
+                          "typeString": "literal_string \"Only a Customer can do this\""
                         }
                       ],
                       "id": 85,
@@ -502,7 +502,7 @@
             },
             "documentation": null,
             "id": 94,
-            "name": "onlyCostumer",
+            "name": "onlyCustomer",
             "nodeType": "ModifierDefinition",
             "parameters": {
               "id": 84,
@@ -511,7 +511,7 @@
                 {
                   "constant": false,
                   "id": 83,
-                  "name": "costumerID",
+                  "name": "CustomerID",
                   "nodeType": "VariableDeclaration",
                   "scope": 94,
                   "src": "442:18:1",
@@ -575,7 +575,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 101,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -625,7 +625,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "isCostumer",
+            "name": "isCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 97,
@@ -732,7 +732,7 @@
                         }
                       ],
                       "id": 112,
-                      "name": "_addCostumer",
+                      "name": "_addCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 142,
@@ -767,7 +767,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "addCostumer",
+            "name": "addCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 110,
@@ -863,7 +863,7 @@
                         }
                       ],
                       "id": 120,
-                      "name": "_removeCostumer",
+                      "name": "_removeCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 158,
@@ -898,7 +898,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "renounceCostumer",
+            "name": "renounceCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 118,
@@ -952,7 +952,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 131,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -1020,7 +1020,7 @@
                         }
                       ],
                       "id": 137,
-                      "name": "CostumerAdded",
+                      "name": "CustomerAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 66,
@@ -1055,7 +1055,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_addCostumer",
+            "name": "_addCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 129,
@@ -1137,7 +1137,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 147,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -1205,7 +1205,7 @@
                         }
                       ],
                       "id": 153,
-                      "name": "CostumerRemoved",
+                      "name": "CustomerRemoved",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 70,
@@ -1240,7 +1240,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_removeCostumer",
+            "name": "_removeCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 145,
@@ -1296,9 +1296,9 @@
     "src": "0:1104:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CostumerRole.sol",
+    "absolutePath": "/Users/stefanzils/Documents/GitHub/organicOilSupply/impl/contracts/access_control/CustomerRole.sol",
     "exportedSymbols": {
-      "CostumerRole": [
+      "CustomerRole": [
         159
       ]
     },
@@ -1337,7 +1337,7 @@
         "linearizedBaseContracts": [
           159
         ],
-        "name": "CostumerRole",
+        "name": "CustomerRole",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
@@ -1373,7 +1373,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 66,
-            "name": "CostumerAdded",
+            "name": "CustomerAdded",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 65,
@@ -1416,7 +1416,7 @@
             "anonymous": false,
             "documentation": null,
             "id": 70,
-            "name": "CostumerRemoved",
+            "name": "CustomerRemoved",
             "nodeType": "EventDefinition",
             "parameters": {
               "id": 69,
@@ -1458,7 +1458,7 @@
           {
             "constant": false,
             "id": 72,
-            "name": "costumers",
+            "name": "Customers",
             "nodeType": "VariableDeclaration",
             "scope": 159,
             "src": "319:28:1",
@@ -1531,7 +1531,7 @@
                         }
                       ],
                       "id": 75,
-                      "name": "_addCostumer",
+                      "name": "_addCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 142,
@@ -1602,7 +1602,7 @@
                           {
                             "argumentTypes": null,
                             "id": 87,
-                            "name": "costumerID",
+                            "name": "CustomerID",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 83,
@@ -1621,7 +1621,7 @@
                             }
                           ],
                           "id": 86,
-                          "name": "isCostumer",
+                          "name": "isCustomer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 107,
@@ -1647,7 +1647,7 @@
                       },
                       {
                         "argumentTypes": null,
-                        "hexValue": "4f6e6c79206120436f7374756d65722063616e20646f2074686973",
+                        "hexValue": "4f6e6c79206120437573746f6d65722063616e20646f2074686973",
                         "id": 89,
                         "isConstant": false,
                         "isLValue": false,
@@ -1658,10 +1658,10 @@
                         "src": "511:29:1",
                         "subdenomination": null,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_stringliteral_d85700200151ff9322b8bc8498c9c68df841b350607ef14b6eb1889ab947d6b6",
-                          "typeString": "literal_string \"Only a Costumer can do this\""
+                          "typeIdentifier": "t_stringliteral_55c5367edd0af503cf578cc27520f282ceada115bb20d09a6c33048b3bbf80df",
+                          "typeString": "literal_string \"Only a Customer can do this\""
                         },
-                        "value": "Only a Costumer can do this"
+                        "value": "Only a Customer can do this"
                       }
                     ],
                     "expression": {
@@ -1671,8 +1671,8 @@
                           "typeString": "bool"
                         },
                         {
-                          "typeIdentifier": "t_stringliteral_d85700200151ff9322b8bc8498c9c68df841b350607ef14b6eb1889ab947d6b6",
-                          "typeString": "literal_string \"Only a Costumer can do this\""
+                          "typeIdentifier": "t_stringliteral_55c5367edd0af503cf578cc27520f282ceada115bb20d09a6c33048b3bbf80df",
+                          "typeString": "literal_string \"Only a Customer can do this\""
                         }
                       ],
                       "id": 85,
@@ -1716,7 +1716,7 @@
             },
             "documentation": null,
             "id": 94,
-            "name": "onlyCostumer",
+            "name": "onlyCustomer",
             "nodeType": "ModifierDefinition",
             "parameters": {
               "id": 84,
@@ -1725,7 +1725,7 @@
                 {
                   "constant": false,
                   "id": 83,
-                  "name": "costumerID",
+                  "name": "CustomerID",
                   "nodeType": "VariableDeclaration",
                   "scope": 94,
                   "src": "442:18:1",
@@ -1789,7 +1789,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 101,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -1839,7 +1839,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "isCostumer",
+            "name": "isCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 97,
@@ -1946,7 +1946,7 @@
                         }
                       ],
                       "id": 112,
-                      "name": "_addCostumer",
+                      "name": "_addCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 142,
@@ -1981,7 +1981,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "addCostumer",
+            "name": "addCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 110,
@@ -2077,7 +2077,7 @@
                         }
                       ],
                       "id": 120,
-                      "name": "_removeCostumer",
+                      "name": "_removeCustomer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 158,
@@ -2112,7 +2112,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "renounceCostumer",
+            "name": "renounceCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 118,
@@ -2166,7 +2166,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 131,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -2234,7 +2234,7 @@
                         }
                       ],
                       "id": 137,
-                      "name": "CostumerAdded",
+                      "name": "CustomerAdded",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 66,
@@ -2269,7 +2269,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_addCostumer",
+            "name": "_addCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 129,
@@ -2351,7 +2351,7 @@
                       "expression": {
                         "argumentTypes": null,
                         "id": 147,
-                        "name": "costumers",
+                        "name": "Customers",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 72,
@@ -2419,7 +2419,7 @@
                         }
                       ],
                       "id": 153,
-                      "name": "CostumerRemoved",
+                      "name": "CustomerRemoved",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 70,
@@ -2454,7 +2454,7 @@
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_removeCostumer",
+            "name": "_removeCustomer",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 145,
@@ -2516,7 +2516,7 @@
   "networks": {
     "5777": {
       "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
+        "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f": {
           "anonymous": false,
           "inputs": [
             {
@@ -2525,11 +2525,11 @@
               "type": "address"
             }
           ],
-          "name": "CostumerAdded",
+          "name": "CustomerAdded",
           "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
+          "signature": "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f"
         },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
+        "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6": {
           "anonymous": false,
           "inputs": [
             {
@@ -2538,282 +2538,18 @@
               "type": "address"
             }
           ],
-          "name": "CostumerRemoved",
+          "name": "CustomerRemoved",
           "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
+          "signature": "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6"
         }
       },
       "links": {},
-      "address": "0xfd199DD5eBD7CF53a1cc276d6bddF0e0b9a807Ab",
-      "transactionHash": "0xe8ee80d14d8c3b47a7843b320b0ee5fc4ec1cf1018e041297e2c138474a05e74"
-    },
-    "1569867557216": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x1FCE09D1821648b9A58ee8D53e7863Bd8919F151",
-      "transactionHash": "0x7dbd0178f36c8f6b5283eaa1dfa0b11166e68afaf5f5b7256340f8ff2028539e"
-    },
-    "1569924555151": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x9Da5c1D85c8A795d0Cb0613fEE51b2e74820fb79",
-      "transactionHash": "0x5711f67d02fcbab762738476fde7dd9db973875f490df5a8c6c31244894ddbfa"
-    },
-    "1569959089164": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0xC0914b73fAC739154d382Dc164596899efde4C31",
-      "transactionHash": "0x7f0b4d34029886150f10dab0152f846b93bd6728ac963268c0e4e730a8af53d0"
-    },
-    "1570061384817": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x49874E220d2cE3262399A6C440b2805e5E6dc2be",
-      "transactionHash": "0x137af711d0c5ae61a17119b94fcbfd4b5549f4860c045be862b56598bfba8d61"
-    },
-    "1570064247537": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x3ddA98332E75A704b5f704Ae5ee6525f040a5696",
-      "transactionHash": "0x37ebfd83fb90ba1b6e6ddec2f9535cb11571dbec4c4c5770c0e8d890f1f77d59"
-    },
-    "1570118569429": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0xc655e3bCA1d3C73465ac29EC47FDf0c89bEc482b",
-      "transactionHash": "0x42948540451718378c685995a22e5cf80198f076f3b3b5ff31939cf57a390113"
-    },
-    "1570143752278": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x16935b4b27d5E95f6b9a8f8baED520B591310360",
-      "transactionHash": "0xa2cb47b5c02d48c2ff2a84e16c5c1bf0d3a9f4545240bb7cdabe6147ca9e605f"
-    },
-    "1570144657960": {
-      "events": {
-        "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerAdded",
-          "type": "event",
-          "signature": "0x37f2bb8f4596c61172526eb12f70fe6a1a9653a0b5fedbe1031b7a2bf71a27eb"
-        },
-        "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "CostumerRemoved",
-          "type": "event",
-          "signature": "0x7c5ae0e07939db69fda08596f8822b6c8b745657804957ef938a645cff7fb5f3"
-        }
-      },
-      "links": {},
-      "address": "0x0AF9af5fa2DBe71f0AB115Ed2ac2EA9ca5deb569",
-      "transactionHash": "0x7306043c4f00c5c365b5c0da46d9eeea778a00287021bd0aa1907665736564a8"
+      "address": "0x3B034812BB370288317d4Ce3E2d9cF78D8495E4a",
+      "transactionHash": "0xc55265d23dc6636ddf180d8f7b8e823272b2e7b547b8bfcd302dd12db711d03e"
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T15:22:25.726Z",
+  "updatedAt": "2019-10-04T15:49:07.787Z",
   "devdoc": {
     "methods": {}
   },

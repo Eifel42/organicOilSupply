@@ -39,17 +39,6 @@ function FetchFarm(props) {
   // An authority can officially endorse the certification scheme as approved
   const fetchFarm = async () => {
 
-  /*  oilProduction.ownerID,        // 0
-      oilProduction.millID,         // 1
-      oilProduction.shopID,         // 2
-      oilProduction.millName,       // 3
-      oilProduction.pressDate,      // 4
-      oilProduction.amountLiters,   // 5
-      oilProduction.bottlingDate,   // 6
-      oilProduction.deliveryDate,   // 7
-      oilProduction.inShopDate,     // 8
-      oilProduction.bottleCount,    // 9
-      oilProduction.productionState // 10*/
     supplyChain.methods.fetchOilProduction(oilProductionID).call(
       {from: accountID, gas: 3000000}).then(function (result) {
         addAlert(`fetchOilProductionFarm ${oilProductionID}`, 'success');

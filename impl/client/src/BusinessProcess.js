@@ -17,6 +17,7 @@ import FetchOilProduction from "./FetchOilPorduction";
 import Delivery from "./Delivery"
 import GetDelivery from "./GetDelivery"
 import BuyBottle from "./BuyBottle"
+import FetchBottle from "./FetchBottle"
 
 function BusinessProcess(props) {
 
@@ -104,6 +105,10 @@ function BusinessProcess(props) {
                     <Tab eventKey="fetchOilProduction" title="Oil Prod. Data">
                       <FetchOilProduction addAlert={addAlert} accounts={accounts} drizzle={drizzle}
                                  drizzleState={drizzleState} />
+                    </Tab>
+                    <Tab eventKey="fetchBottle" title="Bottle Data">
+                      <FetchBottle addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                   drizzleState={drizzleState} />
                     </Tab>
                     <Tab eventKey="accounts" title="Accounts">
                       <Accounts addAlert={addAlert} accounts={accounts} drizzle={drizzle}

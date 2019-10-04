@@ -8,7 +8,7 @@ The organic farmer Bob produces exclusive rapeseed oils. Bob presses the oils in
 
 This example shows the possibilities of tracking of products like wine, beer, bread, or products in chemical or pharmaceutical industries. It tracks the products from the field to the customer. The example has one primary essence and two production steps.
 
-[Organic Oil story in UML](uml/uml.md)
+* [Organic Oil story in UML](uml/uml.md)
 
 # Implementation
 
@@ -16,13 +16,13 @@ This example shows the possibilities of tracking of products like wine, beer, br
 
 This section describes to clone the project and to do the first steps for development and testing.
 
-[Installstation ](install.md)
+* [Installstation](install.md)
 
 ## Deployment on Rinkeby
 
 The following section shows the step to deploy the smart contracts on the Rinkeby test network. It shows the links to the transaction and the smart contract.
 
-[Deployment on Rinkeby](deployment.md)
+* [Deployment on Rinkeby](deployment.md)
 
 ## WEB UI 
 
@@ -35,14 +35,15 @@ npm start
 
 # Business Process
 
-[business Process step by step](businessProcess.md)
+The following Business Process describes the process from harvesting to buying. A screenshot illustrates every step.
 
+* [business Process step by step](businessProcess.md)
 
 ## Built With
 
-* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
+* [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts.
 * [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
-* [React](https://reactjs.org/)
+* [React](https://reactjs.org/) - React framework for modular Javascript frontend development.
 
 ### Libraries
 
@@ -64,4 +65,5 @@ npm start
 * Solidity
 * Ganache-cli
 * Truffle
+* React
 

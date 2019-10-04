@@ -2514,6 +2514,39 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CustomerAdded",
+          "type": "event",
+          "signature": "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f"
+        },
+        "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CustomerRemoved",
+          "type": "event",
+          "signature": "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6"
+        }
+      },
+      "links": {},
+      "address": "0x0f3938bAfB335A458E4E254Ef4297E27E98bD217",
+      "transactionHash": "0xbf652129b68a87684eae3fca97eab237f23ac625097a5f045457be835a6dc45d"
+    },
     "1570222629174": {
       "events": {
         "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f": {
@@ -2549,7 +2582,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T20:57:34.391Z",
+  "updatedAt": "2019-10-04T21:57:24.035Z",
   "devdoc": {
     "methods": {}
   },

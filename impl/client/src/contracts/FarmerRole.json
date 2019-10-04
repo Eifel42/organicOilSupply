@@ -2470,6 +2470,39 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerAdded",
+          "type": "event",
+          "signature": "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0"
+        },
+        "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerRemoved",
+          "type": "event",
+          "signature": "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2"
+        }
+      },
+      "links": {},
+      "address": "0x772E1f9CEdc08060cf2825736F62840398fdb2d7",
+      "transactionHash": "0x85e53caf1b201339a79c57777e9ec1be2fb63b816bf69a23c76507746d54e6ec"
+    },
     "1570222629174": {
       "events": {
         "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0": {
@@ -2505,7 +2538,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T20:57:34.384Z",
+  "updatedAt": "2019-10-04T21:57:24.018Z",
   "devdoc": {
     "methods": {}
   },

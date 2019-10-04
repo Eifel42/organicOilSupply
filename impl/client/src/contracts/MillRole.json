@@ -2470,6 +2470,39 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        }
+      },
+      "links": {},
+      "address": "0x1080B6Cf18f8bb7CA3BB14Dc0ea43e9970a3fcC0",
+      "transactionHash": "0x7acd9d2a384af8baaae64d7e4ece1307a20126fd91d6e11e4f448b312eedb294"
+    },
     "1570222629174": {
       "events": {
         "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
@@ -2505,7 +2538,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T20:57:34.387Z",
+  "updatedAt": "2019-10-04T21:57:24.023Z",
   "devdoc": {
     "methods": {}
   },

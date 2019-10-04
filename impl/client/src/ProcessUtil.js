@@ -45,7 +45,7 @@
   }
 
   function gasPerTransaction() {
-    return 48000000;
+    return 4800000;
   }
 
 

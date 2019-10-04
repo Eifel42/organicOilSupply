@@ -2470,6 +2470,39 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ShopAdded",
+          "type": "event",
+          "signature": "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d"
+        },
+        "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ShopRemoved",
+          "type": "event",
+          "signature": "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9"
+        }
+      },
+      "links": {},
+      "address": "0x1962E6C215df28d538D09f73Bcf542ebFD50142D",
+      "transactionHash": "0xcb0382b9afbef3884e9b554fc36fd72b9768b145c3455de168759a7ae9a4bb83"
+    },
     "1570222629174": {
       "events": {
         "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d": {
@@ -2505,7 +2538,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T20:57:34.389Z",
+  "updatedAt": "2019-10-04T21:57:24.032Z",
   "devdoc": {
     "methods": {}
   },

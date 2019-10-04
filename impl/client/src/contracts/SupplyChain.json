@@ -26408,6 +26408,213 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0x8e55ccfc9778ff8eba1646d765cf1982537ce0f9257054a17b48aad745250183": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "productionID",
+              "type": "uint256"
+            }
+          ],
+          "name": "Harvested",
+          "type": "event",
+          "signature": "0x8e55ccfc9778ff8eba1646d765cf1982537ce0f9257054a17b48aad745250183"
+        },
+        "0xbc3979d8d5506915d003e5226085458b0197152ba2fbb08d49992370051ba6ed": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "productionID",
+              "type": "uint256"
+            }
+          ],
+          "name": "Pressed",
+          "type": "event",
+          "signature": "0xbc3979d8d5506915d003e5226085458b0197152ba2fbb08d49992370051ba6ed"
+        },
+        "0x8aff1823bf9f30e2f7eacb17de47cc2917592a34188a0b47c0c228c82c38fc54": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "productionID",
+              "type": "uint256"
+            }
+          ],
+          "name": "Bottled",
+          "type": "event",
+          "signature": "0x8aff1823bf9f30e2f7eacb17de47cc2917592a34188a0b47c0c228c82c38fc54"
+        },
+        "0xfcc296b8bdd64e3f1d1faadef50cb2d6550f645316330fe57cb1dd7e0612ead0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "productionID",
+              "type": "uint256"
+            }
+          ],
+          "name": "Delivered",
+          "type": "event",
+          "signature": "0xfcc296b8bdd64e3f1d1faadef50cb2d6550f645316330fe57cb1dd7e0612ead0"
+        },
+        "0x2cc0966d70ef0763724446017250e9affaaee6480282b4a02e9a3d39a082a7e3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "upc",
+              "type": "uint256"
+            }
+          ],
+          "name": "InShop",
+          "type": "event",
+          "signature": "0x2cc0966d70ef0763724446017250e9affaaee6480282b4a02e9a3d39a082a7e3"
+        },
+        "0x92f64ca637d023f354075a4be751b169c1a8a9ccb6d33cdd0cb3520543995727": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "upc",
+              "type": "uint256"
+            }
+          ],
+          "name": "Sold",
+          "type": "event",
+          "signature": "0x92f64ca637d023f354075a4be751b169c1a8a9ccb6d33cdd0cb3520543995727"
+        },
+        "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CustomerAdded",
+          "type": "event",
+          "signature": "0xcd118a02bd36f224f6f1b93812f78d2bbc2c2dc1bc0f60c176e3b4fe09f1483f"
+        },
+        "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "CustomerRemoved",
+          "type": "event",
+          "signature": "0xb4c88a9c5cd906354abdd1cc29e4f94c6c4de90754fb80ce51e6a33417bc81b6"
+        },
+        "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ShopAdded",
+          "type": "event",
+          "signature": "0x121731828b85b443d173e8dc86615a38927a5b1035349922533c0b02faa1103d"
+        },
+        "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "ShopRemoved",
+          "type": "event",
+          "signature": "0xd50d62b726467f70db12c0823c62ab5a8a5e5075539f68fdfa111b2e77f203e9"
+        },
+        "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillAdded",
+          "type": "event",
+          "signature": "0x00a0477dded24b6f3ca0efb56770e84d7af0117bde8073e93a34e2f0b67f6292"
+        },
+        "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "MillRemoved",
+          "type": "event",
+          "signature": "0x83d8cce936a4bacce731675cb6d6de235957309cc48eb6a36aa7ae1811eb9fab"
+        },
+        "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerAdded",
+          "type": "event",
+          "signature": "0x2e0ded4123377a3c2bc9a26f1717655a129e2f20752924d42e730ec89c83dbd0"
+        },
+        "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FarmerRemoved",
+          "type": "event",
+          "signature": "0xa5e0f060af304ab17dd418c7927e3da3ae7868189bf387aee09ab179ccc572f2"
+        },
+        "0x5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "oldOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "TransferOwnership",
+          "type": "event",
+          "signature": "0x5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c"
+        }
+      },
+      "links": {},
+      "address": "0x3966212e14BEd579720fA9Fbc4a2CbD26EdCbb28",
+      "transactionHash": "0xe7e0d64dd1cba3d587e53b3fe2652faf9fe2d68587dec5ef1b14a56c074b6faf"
+    },
     "1570222629174": {
       "events": {
         "0x8e55ccfc9778ff8eba1646d765cf1982537ce0f9257054a17b48aad745250183": {
@@ -26617,7 +26824,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T20:57:34.400Z",
+  "updatedAt": "2019-10-04T21:57:24.049Z",
   "devdoc": {
     "author": "Stefan Zils",
     "methods": {

@@ -37,7 +37,7 @@ npm start
 
 The following Business Process describes the process from harvesting to buying. A screenshot illustrates every step.
 
-* [business Process step by step](businessProcess.md)
+* [Business Process step by step](businessProcess.md)
 
 ## Built With
 

@@ -1,8 +1,8 @@
-#Installing
+# Installation
 
 A step by step series of examples that tell you have to get a development env running
 
-##Clone this repository:
+## Clone this repository:
 
 ```
 git clone https://github.com/Eifel42/organicOilSupply.git

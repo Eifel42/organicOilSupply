@@ -12,7 +12,7 @@ This example shows the possibilities of tracking of products like wine, beer, br
 
 # Implementation
 
-## Installing
+## Installation
 
 This section describes to clone the project and to do the first steps for development and testing.
 

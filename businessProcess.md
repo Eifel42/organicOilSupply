@@ -18,7 +18,7 @@ Press oil describes the process of pressing the seed. Only a Mill can press the 
 
 The Miller fills up the oil into the bottles. Each bottle has a volume of one Liter. If you have 10 Liters of seed, you get ten bottles.
 
-![Bottling](images/buyBottle.jpeg)
+![Bottling](images/bottling.jpeg)
 
 ## Deliver
 

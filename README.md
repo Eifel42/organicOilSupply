@@ -14,11 +14,13 @@ This example shows the possibilities of tracking of products like wine, beer, br
 
 ## Installing
 
-Compile and test Smart Contracts.
+This section describes to clone the project and to do the first steps for development and testing.
 
-[Installstation ](deployment.md)
+[Installstation ](install.md)
 
 ## Deployment on Rinkeby
+
+The following section shows the step to deploy the smart contracts on the Rinkeby test network. It shows the links to the transaction and the smart contract.
 
 [Deployment on Rinkeby](deployment.md)
 

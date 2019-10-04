@@ -191,7 +191,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   function harvest(uint _productionID, address _farmerID, string memory  _farmerName, uint _harvestDate,
       string memory _fieldName, string memory _latitude, string memory _longitude)
       public
-      onlyFarmer()
+      onlyFarmer(_farmerID)
   {
       OilProduction memory production;
       production.productionID = _productionID;
@@ -216,6 +216,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
    /**
      * @dev describe the oil pressing process of the OilProduction.
      * @param _productionID ID of the OilProduction process.
+     * @param _millID address of mill.
      * @param _millName name of the mill.
      * @param _amountLiters the number of liters of pressed oil.
      * @param _pressDate date of the pressing.
@@ -223,7 +224,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
      */
   function press(uint _productionID, address _millID, string memory _millName, uint _amountLiters, uint _pressDate)
       public
-      onlyMill()
+      onlyMill(_millID)
       harvested(_productionID)
   {
       OilProduction storage production = oilProductions[_productionID];
@@ -243,12 +244,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @dev describe the bottling process of the OilProduction.
     * @param _productionID ID of the OilProduction process.
     * @param _bottlingDate date of bottling.
+    * @param _millID address of mill.
     * @notice emit the Bottled Event. Only a miller can trigger the method
     * if the state is press (Pressed).
     */
-  function bottling(uint _productionID, uint _bottlingDate)
+  function bottling(uint _productionID, uint _bottlingDate, address _millID)
       public
-      onlyMill
+      onlyMill(_millID)
       pressed(_productionID)
   {
       OilProduction storage production = oilProductions[_productionID];
@@ -284,12 +286,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @dev describe the bottling process of the OilProduction.
     * @param _productionID ID of the OilProduction process.
     * @param _deliveryDate date of delivery.
+    * @param _millID address of mill.
     * @notice emit the Delivered Event. Only a miller can trigger the method
     * if the state is bottle (Bottled).
     */
-  function deliver(uint _productionID, address _shopID, uint _deliveryDate)
+  function deliver(uint _productionID, address _shopID, uint _deliveryDate, address _millID)
       public
-      onlyMill
+      onlyMill(_millID)
       bottled(_productionID)
    {
       OilProduction storage production = oilProductions[_productionID];
@@ -313,12 +316,13 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
     * @param _productionID ID of the OilProduction process.
     * @param _inShopDate date of get delivery.
     * @param _price price of the bottle.
+    * @param _shopID address of shop.
     * @notice emit the InShop Event. Only a shop can trigger the method
     * if the state is deliver (Delivered).
     */
-  function getDelivery(uint _productionID, uint _inShopDate, uint _price)
+  function getDelivery(uint _productionID, uint _inShopDate, uint _price, address _shopID)
       public
-      onlyShop
+      onlyShop(_shopID)
       delivered(_productionID)
   {
     OilProduction storage production = oilProductions[_productionID];
@@ -346,7 +350,7 @@ contract SupplyChain is Ownable, FarmerRole, MillRole, ShopRole, CostumerRole {
   function buyBottle(uint _upc, address _customerID, uint _sellDate)
     public
     payable
-    onlyCostumer
+    onlyCostumer(_customerID)
     inShop(_upc)
     paidEnough(bottles[_upc].price)
     checkValue(_upc)

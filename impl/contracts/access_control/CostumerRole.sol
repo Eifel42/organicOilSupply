@@ -16,9 +16,9 @@ contract CostumerRole {
       _addCostumer(msg.sender);
     }
 
-    modifier onlyCostumer() {
+    modifier onlyCostumer(address costumerID) {
       require(
-        isCostumer(msg.sender), 'Only a Costumer can do this');
+        isCostumer(costumerID), 'Only a Costumer can do this');
       _;
     }
 
@@ -26,7 +26,7 @@ contract CostumerRole {
       return costumers.has(account);
     }
 
-    function addCostumer(address account) public onlyCostumer {
+    function addCostumer(address account) public {
       _addCostumer(account);
     }
 

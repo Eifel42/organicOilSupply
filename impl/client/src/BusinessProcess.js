@@ -47,7 +47,7 @@ function BusinessProcess(props) {
         const id = md5(msg);
         if (!alerts.filter(alert => alert.id === id).length) {
             setAlerts(_alerts => !_alerts.filter(alert => alert.id === id).length && [..._alerts, {id, msg, variant}]);
-            setTimeout(() => removeAlert(id), 9000);
+            setTimeout(() => removeAlert(id), 600000, );
         }
     };
 
@@ -69,10 +69,6 @@ function BusinessProcess(props) {
                 <Col>
                   <hr/>
                   <Tabs activeKey={key} onSelect={key => setKey(key)}>
-                    <Tab eventKey="accounts" title="Accounts">
-                      <Accounts addAlert={addAlert} accounts={accounts} drizzle={drizzle}
-                                drizzleState={drizzleState} />
-                    </Tab>
                     <Tab eventKey="harvest" title="Harvest">
                       <Harvest addAlert={addAlert} accounts={accounts} drizzle={drizzle}
                                 drizzleState={drizzleState}/>
@@ -89,7 +85,10 @@ function BusinessProcess(props) {
                       <FetchFarm addAlert={addAlert} accounts={accounts} drizzle={drizzle}
                                 drizzleState={drizzleState} />
                     </Tab>
-
+                    <Tab eventKey="accounts" title="Accounts">
+                      <Accounts addAlert={addAlert} accounts={accounts} drizzle={drizzle}
+                                drizzleState={drizzleState} />
+                    </Tab>
                   </Tabs>
                 </Col>
             </Row>

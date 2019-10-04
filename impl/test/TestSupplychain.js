@@ -41,7 +41,7 @@ contract('SupplyChain', function (accounts) {
   console.log("Shop: accounts[3] ", shopID);
   console.log("Costumer: accounts[4] ", customerID);
   console.log("Unkown: accounts[9] ", unkownID);
-/*
+
   // 1st Test
   it("Testing smart contract function harvest that allows a farmer to harvest the seed", async () => {
     const callerID = orginOwnerID;
@@ -56,11 +56,11 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.harvest(productionID, farmerID, farmerName, harvestTime, fieldName,
+    truffleAssert.reverts(supplyChain.harvest(productionID, unkownID, farmerName, harvestTime, fieldName,
       latitude, longitude, {from: unkownID}), null, 'Unkown can harvest!!');
 
      await supplyChain.harvest(productionID, farmerID, farmerName, harvestTime, fieldName,
-      latitude, longitude, {from: farmerID});
+      latitude, longitude, {from: callerID});
 
     // Retrieve farm data from oil production
     const result = await supplyChain.fetchOilProductionFarm.call(productionID, {from: callerID});
@@ -92,10 +92,10 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.press(productionID, millID, millName, amountLiters, pressTime,
+    truffleAssert.reverts(supplyChain.press(productionID, unkownID, millName, amountLiters, pressTime,
       {from: unkownID}), null, 'Unkown can press!!');
 
-    await supplyChain.press(productionID, millID, millName, amountLiters, pressTime, {from: millID});
+    await supplyChain.press(productionID, millID, millName, amountLiters, pressTime, {from: callerID});
 
     // Retrieve farm data from oil production
     const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
@@ -122,10 +122,10 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.bottling(productionID, bottlingTime,
+    truffleAssert.reverts(supplyChain.bottling(productionID, bottlingTime, unkownID,
       {from: unkownID}), null, 'Unkown can press!!');
 
-    await supplyChain.bottling(productionID, bottlingTime, {from: millID});
+    await supplyChain.bottling(productionID, bottlingTime, millID, {from: callerID});
 
     // Retrieve farm data from oil production
     const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
@@ -163,10 +163,10 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.deliver(productionID, shopID, deliverTime,
-      {from: shopID}), null, 'Unkown can deliver!!');
+    truffleAssert.reverts(supplyChain.deliver(productionID, shopID, deliverTime, unkownID,
+      {from: unkownID}), null, 'Unkown can deliver!!');
 
-    await supplyChain.deliver(productionID, shopID, deliverTime, {from: millID});
+    await supplyChain.deliver(productionID, shopID, deliverTime, millID, {from: callerID});
 
     // Retrieve farm data from oil production
     const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
@@ -209,10 +209,10 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.getDelivery(productionID, shopTime, bottlePrice,
+    truffleAssert.reverts(supplyChain.getDelivery(productionID, shopTime, bottlePrice, unkownID,
       {from: unkownID}), null, 'Unkown can put into shop!!');
 
-    await supplyChain.getDelivery(productionID, shopTime, bottlePrice, {from: shopID});
+    await supplyChain.getDelivery(productionID, shopTime, bottlePrice, shopID, {from: callerID});
 
     // Retrieve farm data from oil production
     const result = await supplyChain.fetchOilProduction.call(productionID, {from: callerID});
@@ -258,7 +258,7 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true;
     });
 
-    truffleAssert.reverts(supplyChain.buyBottle(upc, customerID, sellTime,
+    truffleAssert.reverts(supplyChain.buyBottle(upc, unkownID, sellTime,
       {from: unkownID}), null, 'Unkown can buy bottle!!');
 
     await supplyChain.buyBottle(upc, customerID, sellTime, {from: customerID, value: payment});
@@ -279,14 +279,13 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted OilProduction');
 
   });
-*/
+
   // 7th Test
   it("Testing smart contract function fetchOilProductionFarm", async () => {
     const callerID = orginOwnerID;
     const supplyChain = await SupplyChain.deployed({from: callerID});
 
     const result = await supplyChain.fetchOilProductionFarm.call(productionID, {from: callerID});
-    console.log(result);
 
     assert.equal(result[0], shopID, 'Error: Missing or Invalid ownerID, Shop is Owner of the OilProduction');
     assert.equal(result[1], farmerID, 'Error: Missing or Invalid farmerID');
@@ -298,7 +297,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(result[7], 4, 'Error: Invalid OilProduction State');
 
   });
-/*
+
   // 8th Test
   it("Testing smart contract function fetchOilProduction", async () => {
     const callerID = orginOwnerID;
@@ -345,6 +344,6 @@ contract('SupplyChain', function (accounts) {
     assert.equal(bottleResult[11], 5, 'Error: Invalid item State Bottle');
 
   });
-*/
+
 });
 

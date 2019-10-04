@@ -11,11 +11,14 @@ function Bottling(props) {
   const [millID, setMillID] = useState("1");
   const [oilProductionID, setOilProductionID] = useState("1");
   const [bottlingDate, setBottlingDate] = useState(Date.now());
+  const [ownerID, setOwnerID] = useState("");
+  const supplyChain = drizzle.contracts.SupplyChain;
 
   // Set the Address Fields to default addresses
   useEffect(() => {
     const {accounts} = props;
-    if (accounts.length > 1) {
+    if (accounts.length > 0) {
+      setOwnerID(accounts[0])
       setMillID(accounts[2]);
     }
   }, [props]);
@@ -23,54 +26,43 @@ function Bottling(props) {
 
   // An authority can officially endorse the certification scheme as approved
   const bottling = async () => {
-    if (contract) {
-       const bottlingMethod =  contract.methods["bottling"];
-       try {
-          const stackID = bottlingMethod.cacheSend(
-            oilProductionID,
-            bottlingDate,
-            {from: millID});
-
-          let state = drizzle.store.getState();
-          if (state.transactionStack[stackID]) {
-              const txHash = state.transactionStack[stackID]
-              addAlert(`bottling OilProductionID ${oilProductionID} - Tx Hash : ${txHash}`, 'success');
-           }
-
-       } catch (err) {
-          addAlert(err.message, 'danger')
-      }
-    }
+    supplyChain.methods.bottling(
+      oilProductionID,
+      bottlingDate, millID).send({from: ownerID, gas: 3000000}).then(function (result) {
+      addAlert(`bottling OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
+    }).catch(function (err) {
+      addAlert(err.message, 'danger');
+    });
   };
 
 
   return (
-    <Form>
-      <Form.Group>
-        <Form.Label>Mill Account</Form.Label>
-        <FormControl
-          value={millID}
-          onChange={(i) => setMillID(i.target.value)}
-        />
-        <Form.Label>Oil Production ID</Form.Label>
-        <FormControl
-          value={oilProductionID}
-          onChange={(i) => setOilProductionID(i.target.value)}
-        />
-        <Form.Label>Bottling Date</Form.Label>
-        <FormControl
-          value={bottlingDate}
-          onChange={(i) => setBottlingDate(i.target.value)}
-        />
+    <>
+      <Form>
+        <Form.Group>
+          <Form.Label>Mill Account</Form.Label>
+          <FormControl
+            value={millID}
+            onChange={(i) => setMillID(i.target.value)}
+          />
+          <Form.Label>Oil Production ID</Form.Label>
+          <FormControl
+            value={oilProductionID}
+            onChange={(i) => setOilProductionID(i.target.value)}
+          />
+          <Form.Label>Bottling Date</Form.Label>
+          <FormControl
+            value={bottlingDate}
+            onChange={(i) => setBottlingDate(i.target.value)}
+          />
 
-        <hr/>
-        <Button variant="primary" onClick={bottling}>
-          Bottling
-        </Button>
-      </Form.Group>
-
-
-    </Form>
+          <hr/>
+          <Button variant="primary" onClick={bottling}>
+            Bottling
+          </Button>
+        </Form.Group>
+      </Form>
+    </>
   );
 
 }

@@ -13,11 +13,14 @@ function PressOil(props) {
   const [millName, setMillName] = useState("Endert Eifel Gold Mill");
   const [pressDate, setPressDate] = useState(Date.now());
   const [amountliters, setAmountLiters] = useState("10");
+  const [ownerID, setOwnerID] = useState("");
+  const supplyChain = drizzle.contracts.SupplyChain;
 
   // Set the Address Fields to default addresses
   useEffect(() => {
     const {accounts} = props;
-    if (accounts.length > 1) {
+    if (accounts.length > 0) {
+      setOwnerID(accounts[0])
       setMillID(accounts[2]);
     }
   }, [props]);
@@ -25,90 +28,71 @@ function PressOil(props) {
 
   // An authority can officially endorse the certification scheme as approved
   const pressOil = async () => {
-    if (contract) {
-       const pressMethod =  contract.methods["press"];
-       try {
-          const stackID = await pressMethod.cacheSend(
-            oilProductionID,
-            millID,
-            millName,
-            amountliters,
-            pressDate,
-            {from: millID});
 
-          let state = drizzle.store.getState();
-          if (state.transactionStack[stackID]) {
-              const txHash = state.transactionStack[stackID]
-              addAlert(`pressOil OilProductionID ${oilProductionID} - Tx Hash : ${txHash}`, 'success');
-           }
-
-       } catch (err) {
-          addAlert(err.message, 'danger')
-      }
-    }
+    supplyChain.methods.press(
+      oilProductionID,
+      millID,
+      millName,
+      amountliters,
+      pressDate).send({from: millID, gas: 3000000}).then(function (result) {
+         addAlert(`pressOIl OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
+      }).catch(function (err) {
+         addAlert(err.message, 'danger');
+      });
   };
 
   const addMill = async () => {
-    if (contract) {
-      const addMill =  contract.methods["addMill"];
-      try {
-        const stackID = await addMill.cacheSend(
-          millID, {from: millID});
-
-        let state = drizzle.store.getState();
-        if (state.transactionStack[stackID]) {
-          const txHash = state.transactionStack[stackID]
-          addAlert(`add Mill ${stackID} - Tx Hash : ${txHash}`, 'success');
-        }
-
-      } catch (err) {
-        addAlert(err.message, 'danger')
-      }
-    }
+    supplyChain.methods.addMill(millID).send({from: ownerID, gas: 3000000}).then(function (result) {
+        addAlert(`addMill ${millID} - Tx Hash : ${result.transactionHash}`, 'success');
+    }).catch(function (err) {
+        addAlert(err.message, 'danger');
+    });
   };
 
 
   return (
-    <Form>
-      <Form.Group>
-        <Form.Label>Mill Account</Form.Label>
-        <FormControl
-          value={millID}
-          onChange={(i) => setMillID(i.target.value)}
-        />
-        <Form.Label>Oil Production ID</Form.Label>
-        <FormControl
-          value={oilProductionID}
-          onChange={(i) => setOilProductionID(i.target.value)}
-        />
-        <Form.Label>Mill Name</Form.Label>
-        <FormControl
-          value={millName}
-          onChange={(i) => setMillName(i.target.value)}
-        />
-        <Form.Label>amountLiters</Form.Label>
-        <FormControl
-          value={amountliters}
-          onChange={(i) => setAmountLiters(i.target.value)}
-        />
-        <Form.Label>pressDate</Form.Label>
-        <FormControl
-          value={pressDate}
-          onChange={(i) => setPressDate(i.target.value)}
-        />
+    <>
+      <Form>
+        <Form.Group>
+          <Form.Label>Mill Account</Form.Label>
+          <FormControl
+            value={millID}
+            onChange={(i) => setMillID(i.target.value)}
+          />
+          <Form.Label>Oil Production ID</Form.Label>
+          <FormControl
+            value={oilProductionID}
+            onChange={(i) => setOilProductionID(i.target.value)}
+          />
+          <Form.Label>Mill Name</Form.Label>
+          <FormControl
+            value={millName}
+            onChange={(i) => setMillName(i.target.value)}
+          />
+          <Form.Label>amountLiters</Form.Label>
+          <FormControl
+            value={amountliters}
+            onChange={(i) => setAmountLiters(i.target.value)}
+          />
+          <Form.Label>pressDate</Form.Label>
+          <FormControl
+            value={pressDate}
+            onChange={(i) => setPressDate(i.target.value)}
+          />
 
-        <hr/>
-        <Button variant="primary" onClick={addMill}>
-          add Mill Role
-        </Button>
-        &nbsp;&nbsp;
-        <Button variant="primary" onClick={pressOil}>
-          Press Oil
-        </Button>
-      </Form.Group>
+          <hr/>
+          <Button variant="primary" onClick={addMill}>
+            add Mill Role
+          </Button>
+          &nbsp;&nbsp;
+          <Button variant="primary" onClick={pressOil}>
+            Press Oil
+          </Button>
+        </Form.Group>
 
 
-    </Form>
+      </Form>
+    </>
   );
 
 }

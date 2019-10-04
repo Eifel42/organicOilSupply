@@ -7,6 +7,7 @@ function Harvest(props) {
 
   const {drizzle, addAlert} = props;
 
+  const [ownerID, setOwnerID] = useState("");
   const [farmerID, setFarmerID] = useState("");
   const [oilProductionID, setOilProductionID] = useState("1");
   const [farmerName, setFarmerName] = useState("Eifel Gold Harvest");
@@ -14,49 +15,45 @@ function Harvest(props) {
   const [fieldName, setFieldName] = useState("slate west field");
   const [latitude, setLatitude] = useState("50.223206");
   const [longitude, setLongitude] = useState("7.084896");
-
+  const supplyChain = drizzle.contracts.SupplyChain;
 
   // Set the Address Fields to default addresses
   useEffect(() => {
     const {accounts} = props;
-    if (accounts.length > 1) {
+    if (accounts.length > 0) {
+      setOwnerID(accounts[0])
       setFarmerID(accounts[1]);
     }
   }, [props]);
 
-
   // An authority can officially endorse the certification scheme as approved
   const harvest = async () => {
-    addAlert("drinn", 'success');
 
-    const stackID = drizzle.contracts.SupplyChain.methods["harvest"].cacheSend(
+
+    supplyChain.methods.harvest(
       oilProductionID,
       farmerID,
       farmerName,
       harvestDate,
       fieldName,
       latitude,
-      longitude,
-      {from: farmerID});
+      longitude).send({from: ownerID, gas: 3000000}).then(function(result) {
+          addAlert(`harvest OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
+      }).catch(function(err) {
+          addAlert(err.message,'danger');
+      });
 
-    const {transactions, transactionStack} = drizzle.drizzleState;
-
-    // get the transaction hash using our saved `stackId`
-    const txHash = transactionStack[stackID];
-    if (!txHash) return;
-    addAlert(`harvest OilProductionID ${oilProductionID} - Transaction : ${transactions[txHash]} ${transactions[txHash].status}`, 'success');
 
   };
 
   const addFarm = async () => {
 
-    const stackID = drizzle.methods["addFarmer"].cacheSend(farmerID, {from: farmerID});
-    const {transactions, transactionStack} = this.props.drizzleState;
-
-    // get the transaction hash using our saved `stackId`
-    const txHash = transactionStack[stackID];
-    if (!txHash) return;
-    addAlert(`harvest OilProductionID ${oilProductionID} - Transaction : ${transactions[txHash]} ${transactions[txHash].status}`, 'success');
+    supplyChain.methods.addFarmer(
+      farmerID).send({from: ownerID, gas: 3000000}).then(function(result) {
+      addAlert(`addFarmer ${farmerID} - Tx Hash : ${result.transactionHash}`, 'success');
+    }).catch(function(err) {
+      addAlert(err.message,'danger');
+    });
 
   };
 

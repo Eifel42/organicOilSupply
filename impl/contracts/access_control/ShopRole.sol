@@ -21,8 +21,8 @@ contract ShopRole {
   }
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
-  modifier onlyShop() {
-    require(isShop(msg.sender));
+  modifier onlyShop(address shopID) {
+    require(isShop(shopID));
     _;
   }
 
@@ -32,7 +32,7 @@ contract ShopRole {
   }
 
   // Define a function 'addShop' that adds this role
-  function addShop(address account) public onlyShop {
+  function addShop(address account) public {
     _addShop(account);
   }
 

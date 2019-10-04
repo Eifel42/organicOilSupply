@@ -21,8 +21,8 @@ contract MillRole {
   }
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
-  modifier onlyMill() {
-    require(isMill(msg.sender));
+  modifier onlyMill(address millID) {
+    require(isMill(millID));
     _;
   }
 
@@ -32,7 +32,7 @@ contract MillRole {
   }
 
   // Define a function 'addMill' that adds this role
-  function addMill(address account) public onlyMill {
+  function addMill(address account) public {
     _addMill(account);
   }
 

@@ -1,20 +1,20 @@
-import React from 'react';
-
 import './App.css';
-import { DrizzleContext } from "drizzle-react";
+import React from "react";
 import BusinessProcess from "./BusinessProcess";
+import { DrizzleContext } from "@drizzle/react-plugin";
 
+export default () => (
+  <DrizzleContext.Consumer>
+    {drizzleContext => {
+      const { drizzle, drizzleState, initialized } = drizzleContext;
 
-function App() {
+      if (!initialized) {
+        return "Loading...";
+      }
 
-    return (
-        <DrizzleContext.Consumer>
-            {({drizzle}) =>
-
-                <BusinessProcess drizzle={drizzle} />
-            }
-        </DrizzleContext.Consumer>
-    );
-}
-
-export default App;
+      return (
+        <BusinessProcess drizzle={drizzle} drizzleState={drizzleState} />
+      );
+    }}
+  </DrizzleContext.Consumer>
+)

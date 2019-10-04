@@ -26612,8 +26612,8 @@
         }
       },
       "links": {},
-      "address": "0x3966212e14BEd579720fA9Fbc4a2CbD26EdCbb28",
-      "transactionHash": "0xe7e0d64dd1cba3d587e53b3fe2652faf9fe2d68587dec5ef1b14a56c074b6faf"
+      "address": "0xC763973c7bAD18cBCC2270950903A85EF650D881",
+      "transactionHash": "0xa494f9031201b7bf1e6d75325d99b106c560d1a4654fdac9b3ebc6016da83b35"
     },
     "1570222629174": {
       "events": {
@@ -26824,7 +26824,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-04T21:57:24.049Z",
+  "updatedAt": "2019-10-04T23:22:18.178Z",
   "devdoc": {
     "author": "Stefan Zils",
     "methods": {

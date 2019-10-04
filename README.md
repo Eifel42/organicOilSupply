@@ -26,14 +26,34 @@ The following section shows the step to deploy the smart contracts on the Rinkeb
 
 ## WEB UI 
 
-TODO
+The Web UI is development with react. To start and install the local webserver, please do the following steps.
+```
+cd impl/client
+npm install
+npm start
+```
 
+# Business Process
+
+[business Process step by step](businessProcess.md)
 
 
 ## Built With
 
 * [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
-** [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
+* [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
+* [React](https://reactjs.org/)
+
+### Libraries
+
+| Library             | Version       | Why used    |
+|---------------------|---------------|-------------|
+|Truffle              |v5.0.39        |Compile/deploy/test contracts, Ganache for running local test node, Drizzle for React Provider |
+|Solidity             |v0.5.8         |smart contracts programming language|
+|Node                 |v10.16.3       |Runtime for truffle and React |
+|Web3                 |v1.2.1         |Connect to EVM |
+|drizzle              |1.4.0          |Layer to connect via web3 to the smart contract|
+|React                |16.8.6         |WebUI |
 
 
 ## Authors
@@ -44,3 +64,4 @@ TODO
 * Solidity
 * Ganache-cli
 * Truffle
+

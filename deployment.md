@@ -1,47 +1,4 @@
-# Deploy smart contract on a public test network
-
-## Compile and test
-
-All tests pass. The tests also check the firing of the events and if an unknown user tries to start a transaction.
-
-```
-truffle compile
-truffle test
-
-Using network 'development'.
-
-Compiling your contracts...
-===========================
-> Everything is up to date, there is nothing to compile.
-
-ganache-cli accounts used here...
-Contract Owner: accounts[0]  0x824e7D37AA006690445B68E8E2C9d10a4FdD8599
-Farmer: accounts[1]  0x84248fBd79d3A87a45dD3C148c305CD9d1a2dBc8
-Mill: accounts[2]  0x738752c0C7E9Ca314cC5A4B28a0D6fCe4715016D
-Shop: accounts[3]  0x7193550af3327f422f1308baD33dA204D1A95D65
-Customer: accounts[4]  0xc92AF5A75c4d852ba49a22222D89A2E52879b5ED
-Unkown: accounts[9]  0x814fCCA51F3294b781DDA98b5c3c359E5881eE3A
-
-
-  Contract: SupplyChain
-    ✓ Testing smart contract function harvest that allows a farmer to harvest the seed (451ms)
-    ✓ Testing the smart contract function press that allows a miller to press oil (290ms)
-    ✓ Testing the smart contract function bottling that enables a miller to bottle the oil (910ms)
-    ✓ Testing smart contract function deliver that allows a miller to send the bottles to the shop (465ms)
-    ✓ Testing smart contract function getDelivery that allows the shops to put the bottles into the shop (447ms)
-    ✓ Testing smart contract function sellBottle that enables the shop to sell a bottle to the customer (272ms)
-    ✓ Testing smart contract function fetchOilProductionFarm (48ms)
-    ✓ Testing smart contract function fetchOilProduction (46ms)
-    ✓ Testing smart contract function fetchBottle (38ms)
-
-
-  9 passing (3s)
-```
-
-## Deploy 
-
-
-## Deploy on Rinkeby
+# Deploy on Rinkeby
 
 The following section describes the output from deployment to the Rinkeby test network.
 

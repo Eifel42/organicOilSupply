@@ -6,12 +6,11 @@ import Button from "react-bootstrap/Button";
 function PressOil(props) {
 
   const {drizzle, addAlert} = props;
-  const contract = drizzle && drizzle.contracts.SupplyChain;
 
   const [millID, setMillID] = useState("1");
   const [oilProductionID, setOilProductionID] = useState("1");
   const [millName, setMillName] = useState("Endert Eifel Gold Mill");
-  const [pressDate, setPressDate] = useState(Date.now());
+  const [pressDate, setPressDate] = useState("");
   const [amountliters, setAmountLiters] = useState("10");
   const [ownerID, setOwnerID] = useState("");
   const supplyChain = drizzle.contracts.SupplyChain;
@@ -29,12 +28,13 @@ function PressOil(props) {
   // An authority can officially endorse the certification scheme as approved
   const pressOil = async () => {
 
+    const pressTime = Date.parse(pressDate);
     supplyChain.methods.press(
       oilProductionID,
       millID,
       millName,
       amountliters,
-      pressDate).send({from: millID, gas: 3000000}).then(function (result) {
+      pressTime).send({from: millID, gas: 3000000}).then(function (result) {
          addAlert(`pressOIl OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
       }).catch(function (err) {
          addAlert(err.message, 'danger');
@@ -76,6 +76,7 @@ function PressOil(props) {
           />
           <Form.Label>pressDate</Form.Label>
           <FormControl
+            type='date'
             value={pressDate}
             onChange={(i) => setPressDate(i.target.value)}
           />

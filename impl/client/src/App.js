@@ -9,7 +9,8 @@ export default () => (
       const { drizzle, drizzleState, initialized } = drizzleContext;
 
       if (!initialized) {
-        return "Loading...";
+         return "<h1>Loading...</h1> " +
+          "<p>If loading needs more then a minute, please checks if the contracts are deployed on your network</p>";
       }
 
       return (

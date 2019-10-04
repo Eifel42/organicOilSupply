@@ -6,11 +6,10 @@ import Button from "react-bootstrap/Button";
 function Bottling(props) {
 
   const {drizzle, addAlert} = props;
-  const contract = drizzle && drizzle.contracts.SupplyChain;
 
   const [millID, setMillID] = useState("1");
   const [oilProductionID, setOilProductionID] = useState("1");
-  const [bottlingDate, setBottlingDate] = useState(Date.now());
+  const [bottlingDate, setBottlingDate] = useState("");
   const [ownerID, setOwnerID] = useState("");
   const supplyChain = drizzle.contracts.SupplyChain;
 
@@ -26,9 +25,10 @@ function Bottling(props) {
 
   // An authority can officially endorse the certification scheme as approved
   const bottling = async () => {
+    const bottlingTime = Date.parse(bottlingDate);
     supplyChain.methods.bottling(
       oilProductionID,
-      bottlingDate, millID).send({from: ownerID, gas: 3000000}).then(function (result) {
+      bottlingTime, millID).send({from: ownerID, gas: 3000000}).then(function (result) {
       addAlert(`bottling OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
       addAlert(err.message, 'danger');
@@ -52,6 +52,7 @@ function Bottling(props) {
           />
           <Form.Label>Bottling Date</Form.Label>
           <FormControl
+            type='date'
             value={bottlingDate}
             onChange={(i) => setBottlingDate(i.target.value)}
           />

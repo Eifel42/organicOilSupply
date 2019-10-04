@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
+
 function Harvest(props) {
 
   const {drizzle, addAlert} = props;
@@ -11,7 +12,7 @@ function Harvest(props) {
   const [farmerID, setFarmerID] = useState("");
   const [oilProductionID, setOilProductionID] = useState("1");
   const [farmerName, setFarmerName] = useState("Eifel Gold Harvest");
-  const [harvestDate, setHarvestDate] = useState(Date.now());
+  const [harvestDate, setHarvestDate] = useState("");
   const [fieldName, setFieldName] = useState("slate west field");
   const [latitude, setLatitude] = useState("50.223206");
   const [longitude, setLongitude] = useState("7.084896");
@@ -29,12 +30,12 @@ function Harvest(props) {
   // An authority can officially endorse the certification scheme as approved
   const harvest = async () => {
 
-
+    const harvestTime = Date.parse(harvestDate);
     supplyChain.methods.harvest(
       oilProductionID,
       farmerID,
       farmerName,
-      harvestDate,
+      harvestTime,
       fieldName,
       latitude,
       longitude).send({from: ownerID, gas: 3000000}).then(function(result) {
@@ -78,7 +79,8 @@ function Harvest(props) {
             onChange={(i) => setFarmerName(i.target.value)}
           />
           <Form.Label>Harvest Date</Form.Label>
-          <Form.Control
+          <FormControl
+            type='date'
             value={harvestDate}
             onChange={(i) => setHarvestDate(i.target.value)}
           />

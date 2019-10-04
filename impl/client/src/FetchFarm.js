@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button"
 
 /**
  * @return {boolean}
@@ -38,10 +38,12 @@ function FetchFarm(props) {
       {from: accountID, gas: 3000000}).then(function (result) {
         addAlert(`fetchOilProductionFarm ${oilProductionID}`, 'success');
 
+        //*1 to convert to number value;
+        const harvestDate = new Date(result[3]*1);
         setOwnerAddress(result[0]);
         setFarmerAddress(result[1]);
         setFarmerName(result[2]);
-        setHarvestDate(result[3]);
+        setHarvestDate(harvestDate);
         setFieldName(result[4]);
         setLatitude(result[5]);
         setLongitude(result[6]);
@@ -73,44 +75,52 @@ function FetchFarm(props) {
             search
           </Button>
           <hr/>
-          <Form.Label>Owner Address</Form.Label>
+          <Form.Label>Owner Address of OilProduction</Form.Label>
           <FormControl
             value={ownerAddress}
+            readOnly={true}
             onChange={(i) => setOwnerAddress(i.target.value)}
           />
           <Form.Label>Farmer Address</Form.Label>
           <FormControl
             value={farmerAddress}
+            readOnly={true}
             onChange={(i) => setFarmerAddress(i.target.value)}
           />
           <Form.Label>Farmer Name</Form.Label>
           <FormControl
             value={farmerName}
+            readOnly={true}
             onChange={(i) => setFarmerName(i.target.value)}
           />
           <Form.Label>Harvest Date</Form.Label>
-          <Form.Control
+          <FormControl
             value={harvestDate}
+            readOnly={true}
             onChange={(i) => setHarvestDate(i.target.value)}
           />
           <Form.Label>Field Name</Form.Label>
           <FormControl
             value={fieldName}
+            readOnly={true}
             onChange={(i) => setFieldName(i.target.value)}
           />
           <Form.Label>Latitude</Form.Label>
           <FormControl
             value={latitude}
+            readOnly={true}
             onChange={(i) => setLatitude(i.target.value)}
           />
           <Form.Label>Longitude</Form.Label>
           <FormControl
             value={longitude}
+            readOnly={true}
             onChange={(i) => setLongitude(i.target.value)}
           />
           <Form.Label>Production State</Form.Label>
           <FormControl
             value={productionState}
+            readOnly={true}
             onChange={(i) => setProductionState(i.target.value)}
           />
         </Form.Group>

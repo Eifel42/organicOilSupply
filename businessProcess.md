@@ -40,12 +40,18 @@ Buy bottle a customer buy a bottle in the shop. You have to add an address to th
 
 ## Farm Data
 
+Show the Data of a Farm. It's part of the Oil Production.
+
 ![farm data](images/FarmData.jpeg)
 
-## Oil Production Data
+## Oil Production 
+
+Oil production data shows the relevant data from the mill to the shop.
 
 ![oil production](images/OilProductionData.jpeg)
 
 ## Bottle Data
+
+Bottle data include all essential data from the mill to the customer for each data.
 
 ![bottle data](images/bottleData.jpeg)

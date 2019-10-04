@@ -1,9 +1,12 @@
 # Deploy smart contract on a public test network
 
-## Deploy on Rikeybe
+## Deploy on Rinkeby
 
-### Output truffle migrate --network rinkeby
+The following section describes the output from deployment to the Rinkeby test network.
+
 ```
+truffle migrate --network rinkeby
+
 Starting migrations...
 ======================
 > Network name:    'rinkeby'
@@ -124,4 +127,7 @@ Summary
 > Total deployments:   6
 > Final cost:          0.05666363 ETH
 ```
+# Rinkeby Etherscan 
 
+[Link to Transaction  0x5d52d69b10358dca61bf7af72bf25d05dae755b6384aa56d73e79068af66507a](https://rinkeby.etherscan.io/tx/0x5d52d69b10358dca61bf7af72bf25d05dae755b6384aa56d73e79068af66507a)
+[Link to SupplyChain Contract 0xCBB44C5913e4bdfC8Fa392E704334796A1E8C23e](https://rinkeby.etherscan.io/address/0xcbb44c5913e4bdfc8fa392e704334796a1e8c23e)

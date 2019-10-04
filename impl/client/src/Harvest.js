@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-
+import ProcessUtil from "./ProcessUtil";
 
 function Harvest(props) {
 
@@ -30,7 +30,7 @@ function Harvest(props) {
   // An authority can officially endorse the certification scheme as approved
   const harvest = async () => {
 
-    const harvestTime = Date.parse(harvestDate);
+    const harvestTime = ProcessUtil.parseDate(harvestDate);
     supplyChain.methods.harvest(
       oilProductionID,
       farmerID,

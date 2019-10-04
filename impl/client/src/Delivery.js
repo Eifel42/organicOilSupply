@@ -4,13 +4,14 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import ProcessUtil from "./ProcessUtil";
 
-function Bottling(props) {
+function Delivery(props) {
 
   const {drizzle, addAlert} = props;
 
-  const [millID, setMillID] = useState("1");
+  const [millID, setMillID] = useState("");
+  const [shopID, setShopID] = useState("");
   const [oilProductionID, setOilProductionID] = useState("1");
-  const [bottlingDate, setBottlingDate] = useState("");
+  const [deliveryDate, setDeliveryDate] = useState("");
   const [ownerID, setOwnerID] = useState("");
   const supplyChain = drizzle.contracts.SupplyChain;
 
@@ -21,17 +22,19 @@ function Bottling(props) {
     if (accounts.length > 0) {
       setOwnerID(accounts[0])
       setMillID(accounts[2]);
+      setShopID(accounts[3]);
     }
   }, [props]);
 
 
   // An authority can officially endorse the certification scheme as approved
-  const bottling = async () => {
-    const bottlingTime = ProcessUtil.parseDate(bottlingDate);
-    supplyChain.methods.bottling(
+  const deliver = async () => {
+    const deliveryTime = ProcessUtil.parseDate(deliveryDate);
+    supplyChain.methods.deliver(
       oilProductionID,
-      bottlingTime, millID).send({from: ownerID, gas: 6000000}).then(function (result) {
-      addAlert(`bottling OilProductionID ${oilProductionID} - Tx Hash : ${result.transactionHash}`, 'success');
+      shopID,
+      deliveryTime, millID).send({from: ownerID, gas: 6000000}).then(function (result) {
+      addAlert(`deliver OilProductionID ${oilProductionID} to shop- Tx Hash : ${result.transactionHash}`, 'success');
     }).catch(function (err) {
       addAlert(err.message, 'danger');
     });
@@ -52,16 +55,21 @@ function Bottling(props) {
             value={oilProductionID}
             onChange={(i) => setOilProductionID(i.target.value)}
           />
-          <Form.Label>Bottling Date</Form.Label>
+          <Form.Label>Send to Shop</Form.Label>
+          <FormControl
+            value={shopID}
+            onChange={(i) => setShopID(i.target.value)}
+          />
+          <Form.Label>Delivery Date</Form.Label>
           <FormControl
             type='date'
-            value={bottlingDate}
-            onChange={(i) => setBottlingDate(i.target.value)}
+            value={deliveryDate}
+            onChange={(i) => setDeliveryDate(i.target.value)}
           />
 
           <hr/>
-          <Button variant="primary" onClick={bottling}>
-            Bottling
+          <Button variant="primary" onClick={deliver}>
+            Deliver
           </Button>
         </Form.Group>
       </Form>
@@ -70,4 +78,4 @@ function Bottling(props) {
 
 }
 
-export default Bottling;
+export default Delivery;

@@ -12,8 +12,6 @@ const options = {
     fallback: {
       type: "ws",
       url: "ws://127.0.0.1:8545",
-      gas: 3000000,
-      gasPrice: 500000000,
     },
   },
   contracts: [SupplyChain],

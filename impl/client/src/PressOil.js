@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import ProcessUtil from "./ProcessUtil";
 
 function PressOil(props) {
 
@@ -28,7 +29,7 @@ function PressOil(props) {
   // An authority can officially endorse the certification scheme as approved
   const pressOil = async () => {
 
-    const pressTime = Date.parse(pressDate);
+    const pressTime = ProcessUtil.parseDate(pressDate);
     supplyChain.methods.press(
       oilProductionID,
       millID,

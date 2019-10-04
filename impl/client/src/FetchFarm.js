@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button"
+import ProcessUtil from "./ProcessUtil";
 
 /**
  * @return {boolean}
@@ -38,8 +39,9 @@ function FetchFarm(props) {
       {from: accountID, gas: 3000000}).then(function (result) {
         addAlert(`fetchOilProductionFarm ${oilProductionID}`, 'success');
 
-        //*1 to convert to number value;
-        const harvestDate = new Date(result[3]*1);
+        const harvestDate = ProcessUtil.convertDateToString(result[3]);
+        const prodState = ProcessUtil.stateText(result[7]);
+
         setOwnerAddress(result[0]);
         setFarmerAddress(result[1]);
         setFarmerName(result[2]);
@@ -47,7 +49,7 @@ function FetchFarm(props) {
         setFieldName(result[4]);
         setLatitude(result[5]);
         setLongitude(result[6]);
-        setProductionState(result[7]);
+        setProductionState(prodState);
 
     }).catch(function (err) {
       addAlert(err.message, 'danger');
@@ -64,11 +66,6 @@ function FetchFarm(props) {
           <FormControl
             value={oilProductionID}
             onChange={(i) => setOilProductionID(i.target.value)}
-          />
-          <Form.Label>Account ID</Form.Label>
-          <FormControl
-            value={accountID}
-            onChange={(i) => setAccountID(i.target.value)}
           />
           <hr/>
           <Button variant="primary" onClick={fetchFarm}>
